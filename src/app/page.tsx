@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>Futsal Booking System</div>
+    <div>page</div>
   )
 }
 
