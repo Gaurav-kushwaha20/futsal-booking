@@ -1,3 +1,4 @@
 export const endpoints = {
- login: "/auth/login",
+ userLogin: "/auth/user/login",
+ userRegister: "/auth/user/register",
 };
