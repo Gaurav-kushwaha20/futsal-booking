@@ -59,6 +59,7 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
  // if unauthorized the re-fetch with refresh token
  if (result.error && (result.error.status === 401 || result.error.status === 500)) {
   const refreshToken = getCookie(COOKIE_CONFIG.refresh);
+  console.log(result);
   const refreshResult = await baseQuery(
    {
     url: "/user/token-refresh/",

@@ -1,27 +1,45 @@
-// success response
-export interface ILoginSuccess {
- user: IUser;
- token: IToken;
- message: string;
- success: boolean;
+export interface IUserLogin {
+ username: string;
+ password: string;
 }
 
-interface IUser {
+export interface User {
  id: string;
- name: string;
- email: string;
- phone_No: string;
- avatar: string | null;
-}
-interface IToken {
- refresh: string;
- access: string;
+ username: string;
+ password: string;
+ email: string | null;
+ profile_picture: string | null;
+ address: string | null;
+ is_user: boolean;
+ is_owner: boolean;
+ phone_no: string | null;
+ verified: boolean;
 }
 
-// Error Response
-export interface ILoginError {
+export interface Token {
+ access: string;
+ refresh: string;
+}
+
+export interface LoginData {
+ user: User;
+ token: Token;
+}
+
+export interface IUserLoginSuccess {
+ message: string;
+ code: number;
+ success: boolean;
+ data: LoginData;
+ errors: null;
+}
+
+export interface IUserLoginError {
  data: {
   message: string;
-  success: boolean;
+  code: number;
+  success: false;
+  data: null;
+  errors: null;
  };
 }
