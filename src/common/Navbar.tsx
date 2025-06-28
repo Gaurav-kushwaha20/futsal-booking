@@ -31,16 +31,6 @@ const Navbar = () => {
                   </Link>
                </div>
 
-               {/* Auth Buttons */}
-               <div className="hidden md:flex items-center space-x-4">
-                  <Link href="/login" className="text-gray-600 hover:text-primary font-medium">
-                     Login
-                  </Link>
-                  <Link href="/signup" className="bg-primary text-gray-600 px-4 py-2 rounded-md hover:bg-primary/90 transition font-medium">
-                     Sign Up
-                  </Link>
-               </div>
-
                {/* Mobile menu button */}
                <div className="md:hidden flex items-center">
                   <button onClick={() => setIsOpen(!isOpen)}>
@@ -57,8 +47,6 @@ const Navbar = () => {
                <Link href="/futsals" className="block py-2 text-gray-700 hover:text-primary font-medium">Futsals</Link>
                <Link href="/bookings" className="block py-2 text-gray-700 hover:text-primary font-medium">Bookings</Link>
                <Link href="/about" className="block py-2 text-gray-700 hover:text-primary font-medium">About</Link>
-               <Link href="/login" className="block py-2 text-gray-600 hover:text-primary font-medium">Login</Link>
-               <Link href="/signup" className="block py-2 bg-primary text-white rounded-md text-center mt-2">Sign Up</Link>
             </div>
          )}
       </nav>
