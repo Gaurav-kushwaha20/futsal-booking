@@ -43,7 +43,7 @@ const useLogin = () => {
       isUserLoggedIn: true,
      })
     );
-    router.replace(PATH.ownerDashboard);
+    router.replace(PATH.owner.dashboard);
     showSuccessMessage(response?.message);
    } else if (error) {
     showErrorMessage(error?.data?.message);

@@ -26,7 +26,16 @@ interface AuthState {
  isLoggedIn: boolean;
 }
 
+const initialAuthState: AuthState = {
+ user: null,
+ isLoggedIn: false,
+};
+
 const getInitialState = (): AuthState => {
+ if (typeof window === "undefined") {
+  return initialAuthState;
+ }
+
  try {
   const userId = localStorage.getItem("userId");
   const refreshToken = getCookie(COOKIE_CONFIG.refresh);

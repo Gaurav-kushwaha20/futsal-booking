@@ -3,5 +3,8 @@ export const PATH = {
  login: "/login",
  reset: "/reset",
  userDashboard: "/user",
- ownerDashboard: "/owner",
+ // owner routes
+ owner: {
+  dashboard: "/owner",
+ },
 };
