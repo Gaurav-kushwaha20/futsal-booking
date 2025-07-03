@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { ReduxProvider } from "@/components/ReduxProvider";
-
+import './globals.css';
 
 export const metadata: Metadata = {
   title: "Futsal Booking System",
