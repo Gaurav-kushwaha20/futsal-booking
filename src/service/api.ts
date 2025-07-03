@@ -70,7 +70,7 @@ const baseQueryWithReauth = async (args: BaseQueryArg<any>, api: BaseQueryApi, e
   const refreshToken = getCookie(COOKIE_CONFIG.refresh);
   const refreshResult = await baseQuery(
    {
-    url: "/user/token/refresh/",
+    url: "/auth/user/refresh",
     method: "POST",
     body: { refresh: refreshToken },
    },
@@ -78,18 +78,18 @@ const baseQueryWithReauth = async (args: BaseQueryArg<any>, api: BaseQueryApi, e
    extraOptions
   );
   if (refreshResult.data) {
-   const { accessToken, refreshToken } = refreshResult.data as {
-    accessToken: string;
-    refreshToken: string;
+   const { access, refresh } = refreshResult.data as {
+    access: string;
+    refresh: string;
    };
    setCookie({
-    cookieName: accessToken,
-    value: accessToken,
+    cookieName: COOKIE_CONFIG.access,
+    value: access,
     expiresIn: COOKIE_CONFIG.accessTime,
    });
    setCookie({
     cookieName: COOKIE_CONFIG.refresh,
-    value: refreshToken,
+    value: refresh,
     expiresIn: COOKIE_CONFIG.refreshTime,
    });
    result = await baseQuery(args, api, extraOptions);
