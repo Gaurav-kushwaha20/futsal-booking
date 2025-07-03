@@ -20,6 +20,13 @@ export const mainMenuItems = [
   active: false,
   link: PATH.owner.dashboard,
  },
+ {
+  id: "futsals",
+  icon: IoHomeOutline,
+  label: "Futsals",
+  active: false,
+  link: PATH.owner.futsals,
+ },
 ];
 
 export const userMenuItems: UserMenuItem[] = [

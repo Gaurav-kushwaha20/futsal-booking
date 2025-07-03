@@ -6,5 +6,6 @@ export const PATH = {
  // owner routes
  owner: {
   dashboard: "/owner",
+  futsals: "/owner/futsals",
  },
 };
