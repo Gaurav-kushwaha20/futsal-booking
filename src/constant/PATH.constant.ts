@@ -8,5 +8,6 @@ export const PATH = {
   login: "/owner/login",
   dashboard: "/owner",
   futsals: "/owner/futsals",
+  createFutsal: "/owner/futsals/create",
  },
 };
