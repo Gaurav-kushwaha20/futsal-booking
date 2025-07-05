@@ -21,7 +21,7 @@ export interface Owner {
  is_owner: boolean;
 }
 
-export interface Futsal {
+export interface IFutsal {
  id: string;
  name: string;
  registrationNumber: string;
@@ -39,7 +39,7 @@ export interface Futsal {
 }
 
 export interface FutsalData {
- data: Futsal[];
+ data: IFutsal[];
  page: number;
  pageSize: number;
  totalItems: number;

@@ -5,6 +5,7 @@ export const PATH = {
  userDashboard: "/user",
  // owner routes
  owner: {
+  login: "/owner/login",
   dashboard: "/owner",
   futsals: "/owner/futsals",
  },

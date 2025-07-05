@@ -1,14 +1,16 @@
 "use client"
 import React from 'react'
 import { useFutsal } from '../hooks/useFutsal';
+import OwnerFutsalCard from '@/components/OwnerFutsalCard';
 
 const FutsalList = () => {
    const { data } = useFutsal();
    return (
-      <div>
+      <div className='grid grid-cols-3 gap-x-6'>
          {data?.data?.data?.map((item, index) => (
             <div key={index}>
                {item?.name}
+               <OwnerFutsalCard data={item} />
             </div>
          ))}
       </div>
