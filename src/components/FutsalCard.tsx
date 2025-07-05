@@ -2,10 +2,9 @@
 import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
-import { IFutsal } from '@/app/(user)/futsals/interface/IGetFutsals';
+import { IFutsal } from '@/app/owner/(owner)/futsals/interface/IGetFutsals';
 
 interface IProjectCardProps {
-   number: string;
    data: IFutsal;
    className?: string;
    setCompareProject?: React.Dispatch<React.SetStateAction<string>>;
@@ -13,7 +12,6 @@ interface IProjectCardProps {
 
 export const FutsalCard: React.FC<IProjectCardProps> = ({
    data,
-   number,
    className,
 }) => {
    if (!data) return null;
@@ -84,7 +82,7 @@ export const FutsalCard: React.FC<IProjectCardProps> = ({
                <div className="flex justify-between items-center gap-2 mt-3 min-w-max">
                   {/* Book Now Button */}
 
-                  <Link href={`https://wa.me/${number}`} className="flex-1">
+                  <Link href={`https://wa.me/${data?.owner?.phone_no}`} className="flex-1">
                      <button className="flex justify-center items-center gap-1 bg-blue-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
                         <span className="text-white whitespace-nowrap typography-btn">
                            Book Now

@@ -1,7 +1,11 @@
 "use client"
 import Sidebar from "@/common/Sidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/common/header/Header";
+import { COOKIE_CONFIG } from "@/constant/cookie.constant";
+import { useRouter } from "next/navigation";
+import { PATH } from "@/constant/PATH.constant";
+import { getCookie } from "@/service/cookie";
 
 export default function UserLayout({
    children,
@@ -9,7 +13,15 @@ export default function UserLayout({
    children: React.ReactNode;
 }>) {
    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+   const router = useRouter()
    const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
+
+   const isLoggedIn = getCookie(COOKIE_CONFIG.refresh)
+   useEffect(() => {
+      if (!isLoggedIn) {
+         router.push(PATH.owner.login);
+      }
+   }, [isLoggedIn, router]);
    return (
       <div className="flex flex-col bg-[#F3F4F6] h-screen">
          <Header toggleSidebar={toggleSidebar} />
