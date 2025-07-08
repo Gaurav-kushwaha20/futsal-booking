@@ -5,7 +5,7 @@ export interface IFutsalForm {
  registrationNumber: string;
  logitude: string;
  latitude: string;
- images: File[] | null;
- coverImage: File | null;
- registrationPhoto: File | null;
+ images: File[] | null | string[];
+ coverImage: File | null | string;
+ registrationPhoto: File | null | string;
 }

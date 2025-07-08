@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
 import { IFutsal } from '@/app/owner/(owner)/futsals/interface/IGetFutsals';
+import { PATH } from '@/constant/PATH.constant';
 
 interface IProjectCardProps {
    data: IFutsal;
@@ -26,7 +27,7 @@ export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
                   src={data?.converImage}
                   width={400}
                   height={300}
-                  className="rounded-[6px] w-full h-full"
+                  className="rounded-[6px] w-full h-full object-cover"
                />
                <span className="top-3 md:top-5 left-3 md:left-5 absolute bg-blue-50 backdrop-blur-[4px] px-2.5 py-1 rounded-[6px] text-blue-500 typography-c1-semibold">
                   {data?.district}
@@ -87,11 +88,13 @@ export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
                         View
                      </span>
                   </button>
-                  <button className="flex justify-center items-center gap-1 bg-green-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
-                     <span className="text-white whitespace-nowrap typography-btn">
-                        Edit
-                     </span>
-                  </button>
+                  <Link href={PATH.owner.updateFutsal + "/" + data?.id} className='w-full'>
+                     <button className="flex justify-center items-center gap-1 bg-green-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
+                        <span className="text-white whitespace-nowrap typography-btn">
+                           Edit
+                        </span>
+                     </button>
+                  </Link>
 
                   <button className="flex justify-center items-center gap-1 bg-red-500 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
                      <span className="text-white whitespace-nowrap typography-btn">

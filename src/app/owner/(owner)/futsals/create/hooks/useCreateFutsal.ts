@@ -4,6 +4,7 @@ import { usePostDataMutation } from "@/service/api";
 import { apiTags, endpoints } from "@/constant/endpoints.constant";
 import { ICreateFutsalError, ICreateFutsalSuccess } from "../interface/ICreateFutsals";
 import { showErrorMessage, showSuccessMessage } from "@/service/toast.services";
+import { FILE } from "node:dns";
 
 export const useCreateFutsal = () => {
  const [createFutsal, { isError, isLoading, isSuccess }] = usePostDataMutation();
@@ -36,7 +37,7 @@ export const useCreateFutsal = () => {
 
    // append images
    if (values.images) {
-    values.images?.forEach((file: File) => {
+    values.images?.forEach((file) => {
      form.append("images", file);
     });
    }

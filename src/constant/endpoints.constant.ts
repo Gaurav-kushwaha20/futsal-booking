@@ -5,10 +5,12 @@ export const endpoints = {
  getAllFutsal: "/futsal/get-all",
  owner: {
   futsalList: "/futsal/get",
-  createFutsals: "futsal/register",
+  createFutsals: "/futsal/register",
+  getFutsalsDetails: "futsal/get/",
+  updateFutsal: "/futsal/update/",
  },
 };
 
 export const apiTags = {
-   ownerGetAllFutsals: 'owner_get_all_futsals'
-}
+ ownerGetAllFutsals: "owner_get_all_futsals",
+};

@@ -9,5 +9,6 @@ export const PATH = {
   dashboard: "/owner",
   futsals: "/owner/futsals",
   createFutsal: "/owner/futsals/create",
+  updateFutsal: "/owner/futsals/update",
  },
 };
