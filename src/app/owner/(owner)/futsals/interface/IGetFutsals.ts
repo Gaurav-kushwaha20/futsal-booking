@@ -31,7 +31,7 @@ export interface IFutsal {
  district: string;
  city: string;
  images: string[];
- converImage: string;
+ coverImage: string;
  registrationPhoto: string;
  owner: Owner;
  createdAt: string;

@@ -23,8 +23,8 @@ export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
 
             <div className="relative aspect-[400/235] overflow-hidden">
                <Image
-                  alt={data?.converImage}
-                  src={data?.converImage}
+                  alt={data?.coverImage}
+                  src={data?.coverImage}
                   width={400}
                   height={300}
                   className="rounded-[6px] w-full h-full object-cover"

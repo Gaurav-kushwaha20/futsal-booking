@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { PATH } from '@/constant/PATH.constant';
-import useLogin from '../hooks/useLogin';
+import { useLogin } from '../hooks/useLogin';
 import { FormikProvider } from 'formik';
 import InputText from '@/components/form/InputText';
 import InlineLoader from '@/components/InlineLoader';
