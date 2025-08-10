@@ -1,8 +1,8 @@
 "use client"
 import { FormikProvider } from 'formik'
 import React from 'react'
-import { useCreateFutsal } from '../hooks/useCreateFutsal'
 import InputText from '@/components/form/InputText'
+import { useCreateFutsal } from '../create/hooks/useCreateFutsal'
 
 const CreateFutsalForm = () => {
    const { formik } = useCreateFutsal()

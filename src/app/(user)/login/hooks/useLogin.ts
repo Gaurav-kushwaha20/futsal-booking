@@ -10,7 +10,7 @@ import { showErrorMessage, showSuccessMessage } from "@/service/toast.services";
 import { loginUser } from "@/service/auth.services";
 import { IUserLogin, IUserLoginError, IUserLoginSuccess } from "../interface/ILogin";
 
-const useLogin = () => {
+export const useLogin = () => {
  const router = useRouter();
  const dispatch = useDispatch();
  const [login, { isLoading, isSuccess, isError }] = usePostDataMutation();
@@ -32,6 +32,7 @@ const useLogin = () => {
     data: values,
    });
 
+   console.log(res)
    const response = res?.data as IUserLoginSuccess;
    const error = res?.error as IUserLoginError;
    if (response && response?.success) {
@@ -43,7 +44,7 @@ const useLogin = () => {
       isUserLoggedIn: true,
      })
     );
-    router.replace(PATH.userDashboard);
+    router.replace(PATH.dashboard);
     showSuccessMessage(response?.message);
    } else if (error) {
     showErrorMessage(error?.data?.message);
@@ -54,4 +55,6 @@ const useLogin = () => {
  return { formik, isLoading, isSuccess, isError };
 };
 
-export default useLogin;
+
+
+

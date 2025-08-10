@@ -4,7 +4,6 @@ import { usePostDataMutation } from "@/service/api";
 import { apiTags, endpoints } from "@/constant/endpoints.constant";
 import { ICreateFutsalError, ICreateFutsalSuccess } from "../interface/ICreateFutsals";
 import { showErrorMessage, showSuccessMessage } from "@/service/toast.services";
-import { FILE } from "node:dns";
 
 export const useCreateFutsal = () => {
  const [createFutsal, { isError, isLoading, isSuccess }] = usePostDataMutation();

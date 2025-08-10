@@ -7,7 +7,6 @@ const Page: React.FC = () => {
    const { formik } = useCreateFutsal()
    return (
       <div>
-
          <FutsalForm formik={formik} />
       </div>
    )
