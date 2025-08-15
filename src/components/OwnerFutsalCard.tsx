@@ -23,8 +23,8 @@ export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
 
             <div className="relative aspect-[400/235] overflow-hidden">
                <Image
-                  alt={data?.converImage}
-                  src={data?.converImage}
+                  alt={data?.coverImage}
+                  src={data?.coverImage}
                   width={400}
                   height={300}
                   className="rounded-[6px] w-full h-full object-cover"
@@ -82,12 +82,11 @@ export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
                {/* Footer Part */}
                <div className="flex justify-between items-center gap-2 mt-3 min-w-max">
                   {/* Book Now Button */}
-
-                  <button className="flex justify-center items-center gap-1 bg-blue-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
-                     <span className="text-white whitespace-nowrap typography-btn">
+                  <Link href={PATH.owner.futsals+"/"+data?.id}>
+                     <button className="flex justify-center items-center gap-1 bg-blue-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer text-white whitespace-nowrap typography-btn">
                         View
-                     </span>
-                  </button>
+                     </button>
+                  </Link>
                   <Link href={PATH.owner.updateFutsal + "/" + data?.id} className='w-full'>
                      <button className="flex justify-center items-center gap-1 bg-green-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
                         <span className="text-white whitespace-nowrap typography-btn">

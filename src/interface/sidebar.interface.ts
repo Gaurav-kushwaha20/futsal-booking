@@ -10,3 +10,4 @@ export interface MenuItem {
  children?: MenuItem[];
  showArrow?: boolean;
 }
+

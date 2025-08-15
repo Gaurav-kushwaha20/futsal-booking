@@ -31,7 +31,7 @@ export interface IFutsal {
  district: string;
  city: string;
  images: string[];
- converImage: string;
+ coverImage: string;
  registrationPhoto: string;
  owner: Owner;
  createdAt: string;
@@ -52,4 +52,6 @@ export interface IGetFutsals {
  success: boolean;
  data: FutsalData;
  errors: null;
-}
+} 
+
+// Here interface defines the shape/structure of an Object.While fetching the data from the API , it should contain all these required data.

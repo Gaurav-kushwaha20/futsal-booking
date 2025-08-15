@@ -1,10 +1,13 @@
 export const endpoints = {
- userLogin: "/auth/user/login",
+    auth:{
+        refreshtoken:"/auth/refresh",
+    },
+ userLogin: "/auth/login",
  ownerLogin: "/auth/owner/login",
  userRegister: "/auth/user/register",
  getAllFutsal: "/futsal/get-all",
  owner: {
-  futsalList: "/futsal/get",
+  futsalList: "/futsal/owner/get",
   createFutsals: "/futsal/register",
   getFutsalsDetails: "futsal/get/",
   updateFutsal: "/futsal/update/",
