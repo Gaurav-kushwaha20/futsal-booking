@@ -3,20 +3,20 @@ import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
 import { IFutsal } from '@/app/owner/(owner)/futsals/interface/IGetFutsals';
-import { PATH } from '@/constant/PATH.constant';
 
 interface IProjectCardProps {
    data: IFutsal;
    className?: string;
    setCompareProject?: React.Dispatch<React.SetStateAction<string>>;
    onClickView?: () => void
-   onClickUpdate?: () => void
+   onClickUpdate?: (futsalId: string) => void
    onClickDelete?: () => void
 }
 
 export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
    data,
    className,
+   onClickUpdate
 }) => {
    if (!data) return null;
    return (
@@ -90,7 +90,7 @@ export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
                   <button className="flex justify-center items-center gap-1 bg-blue-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer text-white whitespace-nowrap typography-btn">
                      View
                   </button>
-                  <button className="flex justify-center items-center gap-1 bg-green-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
+                  <button onClick={() => { onClickUpdate?.(data?.id) }} className="flex justify-center items-center gap-1 bg-green-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
                      <span className="text-white whitespace-nowrap typography-btn">
                         Edit
                      </span>

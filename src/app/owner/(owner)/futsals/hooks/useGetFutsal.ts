@@ -1,5 +1,5 @@
 "use client";
-import { endpoints } from "@/constant/endpoints.constant";
+import { apiTags, endpoints } from "@/constant/endpoints.constant";
 import { useGetDataQuery } from "@/service/api";
 import { IGetFutsals } from "../interface/IGetFutsals";
 import { useState } from "react";
@@ -11,7 +11,7 @@ export const useGetFutsal = () => {
 
     const { data } = useGetDataQuery<{ data: IGetFutsals }>({
         url: endpoints.owner.futsalList,
-        tag: "owner_futsalList",
+        tag: apiTags.ownerGetAllFutsals,
         params: {
             page: page,
             pageSize: pageSize,
