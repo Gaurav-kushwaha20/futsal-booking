@@ -16,7 +16,7 @@ const UpdateFutsalModal: React.FC<IProps> = ({ closeModal, futsalId }) => {
     return (
         <FormikProvider value={formik} >
             <form onSubmit={formik.handleSubmit}>
-                <FutsalForm formik={formik} />
+                <FutsalForm />
                 <div className='w-full'>
                     <button disabled={isLoading} type='submit' className='block w-full mx-auto py-2.5 text-white bg-green-500 cursor-pointer'>
                         Update

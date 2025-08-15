@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import Navbar from "@/common/Navbar";
-import RouteTest from "@/components/hooks/RouteTest";
 
 
 export const metadata: Metadata = {

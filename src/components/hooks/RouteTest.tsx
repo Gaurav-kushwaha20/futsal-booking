@@ -3,7 +3,7 @@ import { COOKIE_CONFIG } from '@/constant/cookie.constant';
 import { PATH } from '@/constant/PATH.constant';
 import { getCookie } from '@/service/cookie';
 import { redirect, useParams } from 'next/navigation';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 const RouteTest = () => {
    const params = useParams();
@@ -14,7 +14,7 @@ const RouteTest = () => {
       if (!access || !refresh) {
          redirect(PATH.login);
       }
-   }, [[params]]);
+   }, [params]);
    return null
 }
 
