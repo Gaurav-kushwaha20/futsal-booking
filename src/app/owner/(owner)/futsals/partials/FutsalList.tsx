@@ -10,7 +10,6 @@ const FutsalList = () => {
       <div className='grid grid-cols-3 gap-x-6'>
          {data?.data?.data?.map((item, index) => (
             <div key={index}>
-               {item?.name}
                <OwnerFutsalCard data={item} />
             </div>
          ))}
