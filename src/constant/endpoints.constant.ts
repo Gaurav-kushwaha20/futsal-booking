@@ -8,6 +8,7 @@ export const endpoints = {
   createFutsals: "/futsal/register",
   getFutsalsDetails: "futsal/get/",
   updateFutsal: "/futsal/update/",
+  deleteFutsal: "/futsal/delete/",
  },
 };
 

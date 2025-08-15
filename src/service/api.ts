@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { logoutUser } from "@/store/features/authSlice";
-import type { BaseQueryApi, BaseQueryArg } from "@reduxjs/toolkit/query";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { clearAllCookies, getCookie, setCookie } from "./cookie";
-import { COOKIE_CONFIG } from "@/constant/cookie.constant";
+import type { BaseQueryApi, BaseQueryArg } from '@reduxjs/toolkit/query';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { clearAllCookies, getCookie, setCookie } from './cookie';
+import { COOKIE_CONFIG } from '@/constant/cookie.constant';
 
 interface IGetDataArgs {
  url: string;
@@ -56,9 +56,9 @@ const baseQuery = fetchBaseQuery({
  prepareHeaders: (headers) => {
   const access = getCookie(COOKIE_CONFIG.access);
   if (access) {
-   headers.set("Authorization", `Bearer ${access}`);
+   headers.set('Authorization', `Bearer ${access}`);
   }
-  headers.set("Accept", "application/json");
+  headers.set('Accept', 'application/json');
   return headers;
  },
  // credentials: "include",
@@ -70,8 +70,8 @@ const baseQueryWithReauth = async (args: BaseQueryArg<any>, api: BaseQueryApi, e
   const refreshToken = getCookie(COOKIE_CONFIG.refresh);
   const refreshResult = await baseQuery(
    {
-    url: "/auth/user/refresh",
-    method: "POST",
+    url: '/auth/refresh',
+    method: 'POST',
     body: { refresh: refreshToken },
    },
    api,
@@ -102,60 +102,60 @@ const baseQueryWithReauth = async (args: BaseQueryArg<any>, api: BaseQueryApi, e
 
 export const apiSlice = createApi({
  baseQuery: baseQueryWithReauth,
- tagTypes: ["Data"],
+ tagTypes: ['Data'],
  endpoints: (builder) => ({
   getData: builder.query<any, IGetDataArgs>({
    query: ({ url, params }) => ({
     url,
-    method: "GET",
+    method: 'GET',
     params,
    }),
-   providesTags: (_, __, { tag }) => (tag ? [{ type: "Data", id: tag }] : []),
+   providesTags: (_, __, { tag }) => (tag ? [{ type: 'Data', id: tag }] : []),
   }),
 
   postData: builder.mutation<any, IPostDataArgs>({
    query: ({ url, data, options }) => ({
     url,
-    method: "POST",
+    method: 'POST',
     body: data,
     ...options,
    }),
-   invalidatesTags: (_, __, { invalidateTag }) => (invalidateTag ? invalidateTag.map((tag: string) => ({ type: "Data", id: tag })) : []),
+   invalidatesTags: (_, __, { invalidateTag }) => (invalidateTag ? invalidateTag.map((tag: string) => ({ type: 'Data', id: tag })) : []),
   }),
 
   updateData: builder.mutation<any, IUpdateDataArgs>({
    query: ({ url, data }) => ({
     url,
-    method: "PATCH",
+    method: 'PATCH',
     body: data,
    }),
-   invalidatesTags: (_, __, { invalidateTag }) => (invalidateTag ? invalidateTag.map((tag: string) => ({ type: "Data", id: tag })) : []),
+   invalidatesTags: (_, __, { invalidateTag }) => (invalidateTag ? invalidateTag.map((tag: string) => ({ type: 'Data', id: tag })) : []),
   }),
 
   updatePutData: builder.mutation<any, IUpdateDataArgs>({
    query: ({ url, data }) => ({
     url,
-    method: "PUT",
+    method: 'PUT',
     body: data,
    }),
-   invalidatesTags: (_, __, { invalidateTag }) => (invalidateTag ? invalidateTag.map((tag: string) => ({ type: "Data", id: tag })) : []),
+   invalidatesTags: (_, __, { invalidateTag }) => (invalidateTag ? invalidateTag.map((tag: string) => ({ type: 'Data', id: tag })) : []),
   }),
 
   deleteData: builder.mutation<any, IDeleteDataArgs>({
    query: ({ url, body }) => ({
     url,
-    method: "DELETE",
+    method: 'DELETE',
     body,
    }),
-   invalidatesTags: (_, __, { invalidates }) => (invalidates ? invalidates.map((tag: string) => ({ type: "Data", id: tag })) : []),
+   invalidatesTags: (_, __, { invalidates }) => (invalidates ? invalidates.map((tag: string) => ({ type: 'Data', id: tag })) : []),
   }),
   getAllData: builder.infiniteQuery<PaginatedResponse<any>, IGetDataArgs, InitialPageParam>({
    query: ({ pageParam: { page, size }, queryArg: { url, params } }) => ({
     url,
-    method: "GET",
+    method: 'GET',
     params: { ...params, p: page, page_size: size },
    }),
-   providesTags: (_, __, { tag }) => (tag ? [{ type: "Data", id: tag }] : []),
+   providesTags: (_, __, { tag }) => (tag ? [{ type: 'Data', id: tag }] : []),
    infiniteQueryOptions: {
     initialPageParam: {
      page: 1,

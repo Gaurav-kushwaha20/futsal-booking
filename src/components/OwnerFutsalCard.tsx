@@ -96,11 +96,13 @@ export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
                      </button>
                   </Link>
 
-                  <button className="flex justify-center items-center gap-1 bg-red-500 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
-                     <span className="text-white whitespace-nowrap typography-btn">
-                        Delete
-                     </span>
-                  </button>
+                  <Link href={`/owner/futsals/delete/${data?.id}`} className='w-full'>
+                     <button className="flex justify-center items-center gap-1 bg-red-500 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
+                        <span className="text-white whitespace-nowrap typography-btn">
+                           Delete
+                        </span>
+                     </button>
+                  </Link>
 
                </div>
             </div>

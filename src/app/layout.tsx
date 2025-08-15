@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ReduxProvider } from "@/components/ReduxProvider";
 import './globals.css';
+import RouteTest from "@/components/hooks/RouteTest";
 
 export const metadata: Metadata = {
   title: "Futsal Booking System",
