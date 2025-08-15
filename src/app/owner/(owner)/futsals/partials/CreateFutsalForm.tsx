@@ -2,7 +2,7 @@
 import { FormikProvider } from 'formik'
 import React from 'react'
 import InputText from '@/components/form/InputText'
-import { useCreateFutsal } from '../create/hooks/useCreateFutsal'
+import { useCreateFutsal } from '../hooks/useCreateFutsal'
 
 const CreateFutsalForm = () => {
    const { formik } = useCreateFutsal()

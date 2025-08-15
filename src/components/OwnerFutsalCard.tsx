@@ -9,6 +9,9 @@ interface IProjectCardProps {
    data: IFutsal;
    className?: string;
    setCompareProject?: React.Dispatch<React.SetStateAction<string>>;
+   onClickView?: () => void
+   onClickUpdate?: () => void
+   onClickDelete?: () => void
 }
 
 export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
@@ -27,6 +30,8 @@ export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
                   src={data?.coverImage}
                   width={400}
                   height={300}
+                  loading='eager'
+                  priority={true}
                   className="rounded-[6px] w-full h-full object-cover"
                />
                <span className="top-3 md:top-5 left-3 md:left-5 absolute bg-blue-50 backdrop-blur-[4px] px-2.5 py-1 rounded-[6px] text-blue-500 typography-c1-semibold">
@@ -80,29 +85,21 @@ export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
                </div>
 
                {/* Footer Part */}
-               <div className="flex justify-between items-center gap-2 mt-3 min-w-max">
+               <div className="flex justify-between items-center gap-2 mt-3">
                   {/* Book Now Button */}
-                  <Link href={PATH.owner.futsals+"/"+data?.id}>
-                     <button className="flex justify-center items-center gap-1 bg-blue-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer text-white whitespace-nowrap typography-btn">
-                        View
-                     </button>
-                  </Link>
-                  <Link href={PATH.owner.updateFutsal + "/" + data?.id} className='w-full'>
-                     <button className="flex justify-center items-center gap-1 bg-green-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
-                        <span className="text-white whitespace-nowrap typography-btn">
-                           Edit
-                        </span>
-                     </button>
-                  </Link>
-
-                  <Link href={`/owner/futsals/delete/${data?.id}`} className='w-full'>
-                     <button className="flex justify-center items-center gap-1 bg-red-500 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
-                        <span className="text-white whitespace-nowrap typography-btn">
-                           Delete
-                        </span>
-                     </button>
-                  </Link>
-
+                  <button className="flex justify-center items-center gap-1 bg-blue-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer text-white whitespace-nowrap typography-btn">
+                     View
+                  </button>
+                  <button className="flex justify-center items-center gap-1 bg-green-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
+                     <span className="text-white whitespace-nowrap typography-btn">
+                        Edit
+                     </span>
+                  </button>
+                  <button className="flex justify-center items-center gap-1 bg-red-500 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
+                     <span className="text-white whitespace-nowrap typography-btn">
+                        Delete
+                     </span>
+                  </button>
                </div>
             </div>
          </div>
