@@ -1,6 +1,6 @@
 "use client";
-import { endpoints } from "@/constant/endpoints.constant";
-import { useGetDataQuery } from "@/service/api";
+import { apiTags, endpoints } from "@/constant/endpoints.constant";
+import { useDeleteDataMutation, useGetDataQuery } from "@/service/api";
 import { IGetFutsalSuccess } from "../interface/IGetFutsals";
 import { useState } from "react";
 
