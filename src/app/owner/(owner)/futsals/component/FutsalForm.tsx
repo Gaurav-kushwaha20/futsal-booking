@@ -1,15 +1,9 @@
-import { FormikProps, FormikProvider } from 'formik'
 import React from 'react'
-import { IFutsalForm } from '../interface/IFutsalForm'
 import InputText from '@/components/form/InputText'
 import InputFile from '@/components/form/InputFile'
 import InputFileMultiple from '@/components/form/InputFileMultiple'
 
-interface IProps {
-   formik: FormikProps<IFutsalForm>
-}
-
-const FutsalForm: React.FC<IProps> = ({ formik }) => {
+const FutsalForm: React.FC = () => {
 
    return (
       <div className='grid grid-cols-2 gap-5'>

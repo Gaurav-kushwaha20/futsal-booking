@@ -14,7 +14,7 @@ export interface IFutsalData {
  district: string;
  city: string;
  images: string[];
- converImage: string;
+ coverImage: string;
  registrationPhoto: string;
  owner: IOwner;
  createdAt: string; // ISO date string
