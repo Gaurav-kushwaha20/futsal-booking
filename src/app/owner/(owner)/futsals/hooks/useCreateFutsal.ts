@@ -1,21 +1,21 @@
-import { useFormik } from "formik";
-import { IFutsalForm } from "../../interface/IFutsalForm";
-import { usePostDataMutation } from "@/service/api";
-import { apiTags, endpoints } from "@/constant/endpoints.constant";
-import { ICreateFutsalError, ICreateFutsalSuccess } from "../interface/ICreateFutsals";
-import { showErrorMessage, showSuccessMessage } from "@/service/toast.services";
+import { useFormik } from 'formik';
+import { IFutsalForm } from '../interface/IFutsalForm';
+import { usePostDataMutation } from '@/service/api';
+import { apiTags, endpoints } from '@/constant/endpoints.constant';
+import { showErrorMessage, showSuccessMessage } from '@/service/toast.services';
+import { ICreateFutsalError, ICreateFutsalSuccess } from '../interface/ICreateFutsals';
 
 export const useCreateFutsal = () => {
  const [createFutsal, { isError, isLoading, isSuccess }] = usePostDataMutation();
  const initialValues: IFutsalForm = {
-  name: "",
-  city: "",
+  name: '',
+  city: '',
   coverImage: null,
-  district: "",
+  district: '',
   images: null,
-  logitude: "",
-  latitude: "",
-  registrationNumber: "",
+  logitude: '',
+  latitude: '',
+  registrationNumber: '',
   registrationPhoto: null,
  };
 
@@ -26,18 +26,18 @@ export const useCreateFutsal = () => {
 
    // append registration Photo
    if (values.registrationPhoto) {
-    form.append("registration_photo", values.registrationPhoto);
+    form.append('registration_photo', values.registrationPhoto);
    }
 
    // append cover photo
    if (values.coverImage) {
-    form.append("cover_image", values.coverImage);
+    form.append('cover_image', values.coverImage);
    }
 
    // append images
    if (values.images) {
     values.images?.forEach((file) => {
-     form.append("images", file);
+     form.append('images', file);
     });
    }
 
@@ -51,15 +51,15 @@ export const useCreateFutsal = () => {
       city: values?.city,
       registrationNumber: values?.registrationNumber,
       location: {
-       type: "point",
+       type: 'point',
        coordinates: [values.logitude, values.latitude],
       },
      }),
     ],
-    { type: "application/json" }
+    { type: 'application/json' }
    );
 
-   form.append("data", data);
+   form.append('data', data);
 
    //   Send the data to the backend
 
