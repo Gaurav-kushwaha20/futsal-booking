@@ -1,15 +1,20 @@
-import React from 'react'
-import { useCreateFutsal } from '../hooks/useCreateFutsal'
 import { FormikProvider } from 'formik'
-import FutsalForm from '../component/FutsalForm'
+import React from 'react'
+import TimeSlotForm from '../component/TimeSlotForm'
+import { useCreateTimeSlot } from '../hooks/useCreateTimeSlot'
 import { Loader } from 'lucide-react'
 
-const CreateFutsalModal = () => {
-    const { formik, isLoading } = useCreateFutsal()
+interface IProps {
+    futsalId: string
+    closeModal?: () => void
+}
+
+const CreateTImeSlotModal = ({ futsalId, closeModal }: IProps) => {
+    const { formik, isLoading } = useCreateTimeSlot({ futsalId, closeModal })
     return (
         <FormikProvider value={formik}>
             <form onSubmit={formik.handleSubmit}>
-                <FutsalForm />
+                <TimeSlotForm />
                 <div className='w-full'>
                     <button disabled={isLoading} type='submit' className='block w-full mx-auto py-2.5 text-white bg-green-500 rounded-xl'>
                         Submit
@@ -21,4 +26,4 @@ const CreateFutsalModal = () => {
     )
 }
 
-export default CreateFutsalModal
+export default CreateTImeSlotModal
