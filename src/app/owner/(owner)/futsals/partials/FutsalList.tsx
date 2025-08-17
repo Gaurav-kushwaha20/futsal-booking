@@ -15,7 +15,12 @@ const FutsalList: React.FC<IProps> = ({ handleUpdateClick, handleViewClick, hand
       <div className='grid grid-cols-3 gap-x-6'>
          {data?.data?.data?.map((item, index) => (
             <div key={index}>
-               <OwnerFutsalCard data={item} onClickUpdate={handleUpdateClick} onClickView={handleViewClick} onClickDelete={handleClickDelete} />
+               <OwnerFutsalCard
+                  data={item}
+                  onClickUpdate={handleUpdateClick}
+                  onClickView={handleViewClick}
+                  onClickDelete={handleClickDelete}
+               />
             </div>
          ))}
       </div>

@@ -2,6 +2,7 @@
 import React, { use } from 'react';
 import useGetFutsalDetails from './hooks/useGetFutsalDetails';
 import Image from 'next/image';
+import LoadingScreen from '@/components/LoadingScreen';
 
 interface IProps {
     params: Promise<{ id: string }>
@@ -10,8 +11,8 @@ interface IProps {
 const Page = ({ params }: IProps) => {
     const { id } = use(params)
     const { data, isLoading, isError } = useGetFutsalDetails({ id })
-    if (isLoading) return <p>Loading</p>
-    if (isError) return <p>Error</p>
+    if (isLoading) return <LoadingScreen />
+    if (isError) return 
     console.log("Futsals data", data)
     return (
         <div className="border rounded-lg max-w-4xl mx-auto p-4 space-y-6">

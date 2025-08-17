@@ -22,7 +22,6 @@ const OwnerFutsal: React.FC = () => {
       router.push(`/owner/futsals/${futsalId}`)
    }
    const handleClickDelete = (futsalId: string) => {
-      
       console.log("Deleted Id:", futsalId)
    }
    return (
