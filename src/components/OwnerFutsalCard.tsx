@@ -8,15 +8,17 @@ interface IProjectCardProps {
    data: IFutsal;
    className?: string;
    setCompareProject?: React.Dispatch<React.SetStateAction<string>>;
-   onClickView?: () => void
+   onClickView?: (futsalId: string) => void
    onClickUpdate?: (futsalId: string) => void
-   onClickDelete?: () => void
+   onClickDelete?: (futsalId: string) => void
 }
 
 export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
    data,
    className,
-   onClickUpdate
+   onClickUpdate,
+   onClickView,
+   onClickDelete
 }) => {
    if (!data) return null;
    return (
@@ -87,7 +89,7 @@ export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
                {/* Footer Part */}
                <div className="flex justify-between items-center gap-2 mt-3">
                   {/* Book Now Button */}
-                  <button className="flex justify-center items-center gap-1 bg-blue-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer text-white whitespace-nowrap typography-btn">
+                  <button onClick={() => { onClickView?.(data?.id) }} className="flex justify-center items-center gap-1 bg-blue-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer text-white whitespace-nowrap typography-btn">
                      View
                   </button>
                   <button onClick={() => { onClickUpdate?.(data?.id) }} className="flex justify-center items-center gap-1 bg-green-400 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
@@ -95,7 +97,7 @@ export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
                         Edit
                      </span>
                   </button>
-                  <button className="flex justify-center items-center gap-1 bg-red-500 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
+                  <button onClick={() => { onClickDelete?.(data?.id) }} className="flex justify-center items-center gap-1 bg-red-500 p-1 2xl:p-2.5 rounded-[6px] w-full cursor-pointer">
                      <span className="text-white whitespace-nowrap typography-btn">
                         Delete
                      </span>

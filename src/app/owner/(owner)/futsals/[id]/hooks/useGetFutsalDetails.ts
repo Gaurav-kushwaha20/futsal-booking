@@ -8,13 +8,14 @@ interface IProps {
     id: string
 }
 
-const useGetFutsalDetails = ({ id }: IProps) => { // named export
+const useGetFutsalDetails = ({ id }: IProps) => { // Destructuring the id from the interface
+    // const useGetFutsalDetails = (props:IProps) =>{ const id = props.id} // we can write the above code like this in an understanding way but the upper code is optimized 
 
-    const { isError, isLoading, isSuccess, data } = useGetDataQuery<{ data: IFutsalDetailsResponse; isLoading: boolean; isSuccess: boolean, isError: boolean }>({
-        url: endpoints.owner.getFutsalsDetails + id
-    })
-
-    console.log(data)
+    const { isError, isLoading, isSuccess, data } =
+        useGetDataQuery<{ data: IFutsalDetailsResponse; isLoading: boolean; isSuccess: boolean, isError: boolean }>
+            ({
+                url: endpoints.owner.getFutsalsDetails + id
+            })
 
     return { isError, data, isLoading, isSuccess }
 }
