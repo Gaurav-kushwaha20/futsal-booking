@@ -1,15 +1,21 @@
 import React from 'react'
-import { useCreateFutsal } from '../hooks/useCreateFutsal'
+import { useUpdateTimeSlot } from '../hooks/useUpdateTImeSlot'
 import { FormikProvider } from 'formik'
-import FutsalForm from '../component/FutsalForm'
+import TimeSlotForm from '../component/TimeSlotForm'
 import { Loader } from 'lucide-react'
+import LoadingScreen from '@/components/LoadingScreen'
 
-const CreateFutsalModal = () => {
-    const { formik, isLoading } = useCreateFutsal()
+interface IProps {
+    futsalId: string;
+    closeModal?: () => void;
+}
+const UpdateTImeSlotModal = ({ futsalId, closeModal }: IProps) => {
+    const { formik, isLoading, isInitialDataLoading } = useUpdateTimeSlot({ futsalId, closeModal })
+    if (isInitialDataLoading) return <LoadingScreen />
     return (
         <FormikProvider value={formik}>
             <form onSubmit={formik.handleSubmit}>
-                <FutsalForm />
+                <TimeSlotForm />
                 <div className='w-full'>
                     <button disabled={isLoading} type='submit' className='block w-full mx-auto py-2.5 text-white bg-green-500 rounded-xl'>
                         Submit
@@ -21,4 +27,4 @@ const CreateFutsalModal = () => {
     )
 }
 
-export default CreateFutsalModal
+export default UpdateTImeSlotModal
