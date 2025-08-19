@@ -23,8 +23,8 @@ export const useUpdateFutsal = ({ closeModal, id }: IProps) => {
   coverImage: data?.data?.coverImage || '',
   district: data?.data?.district || '',
   images: data?.data?.images || null,
-  logitude: data?.data?.location?.x.toString() || '',
-  latitude: data?.data?.location?.y.toString() || '',
+  longitude: data?.data?.longitude?.toString() || '',
+  latitude: data?.data?.latitude?.toString() || '',
   registrationNumber: data?.data?.registrationNumber || '',
   registrationPhoto: data?.data?.registrationPhoto || null,
  };
@@ -63,10 +63,8 @@ export const useUpdateFutsal = ({ closeModal, id }: IProps) => {
       district: values?.district,
       city: values?.city,
       registrationNumber: values?.registrationNumber,
-      location: {
-       type: 'point',
-       coordinates: [values.logitude, values.latitude],
-      },
+      latitude: values?.latitude,
+      longitude: values?.longitude,
      }),
     ],
     { type: 'application/json' }

@@ -3,17 +3,20 @@ import React, { useState } from 'react'
 import FutsalCard from '@/components/FutsalCard';
 import useFutsals from './hooks/useFutsals';
 import LoadingScreen from '@/components/LoadingScreen';
+import { useBooking } from './hooks/useBooking';
+import Modal from '@/components/Modal';
+import BookingModal from './modal/BookingModal';
 
 const Page = () => {
    const { futsalList, handleGetRecommendations, isLoading: isGetFutsalsLoading } = useFutsals();
-
+   const { handleBook, timeSlotList, formik, bookingModalState } = useBooking()
    if (isGetFutsalsLoading) return <LoadingScreen />
    return (
       <div>
          <div className='grid grid-cols-3 gap-5'>
             {
                futsalList?.data?.data?.length > 0 && futsalList?.data?.data?.map((item, index) => (
-                  <FutsalCard key={index} data={item} />
+                  <FutsalCard key={index} data={item} handleBookNow={handleBook} />
                ))
             }
 
@@ -23,6 +26,10 @@ const Page = () => {
                </button>
             </div>
          </div>
+         {/* Booking Modal */}
+         <Modal isOpen={bookingModalState?.isOpen} name='Book Futsal' onOpenChange={bookingModalState?.close}>
+            <BookingModal formik={formik} timeSlotList={timeSlotList} />
+         </Modal>
       </div>
    )
 

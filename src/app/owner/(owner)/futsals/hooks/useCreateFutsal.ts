@@ -13,7 +13,7 @@ export const useCreateFutsal = () => {
   coverImage: null,
   district: '',
   images: null,
-  logitude: '',
+  longitude: '',
   latitude: '',
   registrationNumber: '',
   registrationPhoto: null,
@@ -50,10 +50,8 @@ export const useCreateFutsal = () => {
       district: values?.district,
       city: values?.city,
       registrationNumber: values?.registrationNumber,
-      location: {
-       type: 'point',
-       coordinates: [values.logitude, values.latitude],
-      },
+      latitude: values?.latitude,
+      longitude: values?.longitude,
      }),
     ],
     { type: 'application/json' }

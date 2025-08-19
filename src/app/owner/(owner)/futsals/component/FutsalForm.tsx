@@ -29,7 +29,7 @@ const FutsalForm: React.FC = () => {
          />
          <InputText
             label='Longitude'
-            name='logitude'
+            name='longitude'
             placeholder='--Enter State--'
          />
          <InputText

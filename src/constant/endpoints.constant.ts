@@ -19,6 +19,10 @@ export const endpoints = {
   details: '/time-slot/details/id',
   update: '/time-slot/update/id',
   delete: 'time-slot/delete/id',
+  getByFutsalId: '/time-slot/get-all/id',
+ },
+ booking: {
+  create: '/booking/create?futsal=id',
  },
 };
 

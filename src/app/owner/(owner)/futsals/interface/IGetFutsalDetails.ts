@@ -10,7 +10,8 @@ export interface IFutsalData {
  id: string;
  name: string;
  registrationNumber: string;
- location: ILocation;
+ latitude: number;
+ longitude: number;
  district: string;
  city: string;
  images: string[];
@@ -19,13 +20,6 @@ export interface IFutsalData {
  owner: IOwner;
  createdAt: string; // ISO date string
  updatedAt: string; // ISO date string
-}
-
-export interface ILocation {
- x: number;
- y: number;
- type: string; // You can use a literal type: 'Point' if fixed
- coordinates: [number, number];
 }
 
 export interface IOwner {

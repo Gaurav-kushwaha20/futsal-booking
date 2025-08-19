@@ -3,7 +3,7 @@ export interface IFutsalForm {
  district: string;
  city: string;
  registrationNumber: string;
- logitude: string;
+ longitude: string;
  latitude: string;
  images: File[] | null | string[];
  coverImage: File | null | string;
