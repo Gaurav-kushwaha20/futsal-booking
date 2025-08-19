@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { logoutUser } from "@/store/features/authSlice";
-import type { BaseQueryApi, BaseQueryArg } from "@reduxjs/toolkit/query";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { clearAllCookies, getCookie, setCookie } from "./cookie";
-import { COOKIE_CONFIG } from "@/constant/cookie.constant";
-import { endpoints } from "@/constant/endpoints.constant";
+import type { BaseQueryApi, BaseQueryArg } from '@reduxjs/toolkit/query';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { clearAllCookies, getCookie, setCookie } from './cookie';
+import { COOKIE_CONFIG } from '@/constant/cookie.constant';
+import { endpoints } from '@/constant/endpoints.constant';
 
 interface IGetDataArgs {
  url: string;
@@ -72,7 +72,7 @@ const baseQueryWithReauth = async (args: BaseQueryArg<any>, api: BaseQueryApi, e
   const refreshResult = await baseQuery(
    {
     url: endpoints.auth.refreshtoken,
-    method: "POST",
+    method: 'POST',
     body: { refresh: refreshToken },
    },
    api,
@@ -96,6 +96,7 @@ const baseQueryWithReauth = async (args: BaseQueryArg<any>, api: BaseQueryApi, e
    result = await baseQuery(args, api, extraOptions);
   } else {
    clearAllCookies();
+   window.location.href = '/';
   }
  }
  return result;

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ReduxProvider } from "@/components/ReduxProvider";
 import './globals.css';
+import ProtectedRoutes from "@/components/ProtectedRoutes";
 
 export const metadata: Metadata = {
   title: "Futsal Booking System",
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ReduxProvider>
-          {children}
+          <ProtectedRoutes>
+            {children}
+          </ProtectedRoutes>
         </ReduxProvider>
       </body>
     </html>
