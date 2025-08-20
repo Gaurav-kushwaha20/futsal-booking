@@ -68,10 +68,10 @@ export const OwnerFutsalCard: React.FC<IProjectCardProps> = ({
 
                   <div className="flex justify-between items-center">
                      <span className="text-black-300 typography-p2-regular">
-                        Full Name:
+                        City
                      </span>
                      <span className="text-blue-400 typography-p2-semibold">
-                        {data?.owner?.fullName || data?.owner?.fullName}
+                        {data?.owner?.fullName}
                      </span>
                   </div>
 

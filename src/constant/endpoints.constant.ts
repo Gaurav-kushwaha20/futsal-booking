@@ -23,6 +23,8 @@ export const endpoints = {
  },
  booking: {
   create: '/booking/create?futsal=id',
+  getUserBooking: '/booking/user',
+  getOwnerBooking: '/booking/owner',
  },
 };
 

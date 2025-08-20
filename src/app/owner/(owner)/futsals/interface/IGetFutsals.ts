@@ -1,10 +1,3 @@
-export interface Location {
- x: number;
- y: number;
- type: string;
- coordinates: number[];
-}
-
 export interface Owner {
  id: string;
  username: string;
@@ -26,7 +19,8 @@ export interface IFutsal {
  name: string;
  registrationNumber: string;
  address: string;
- location: Location;
+ latitude: string;
+ longitude: string;
  state: string;
  district: string;
  city: string;
@@ -52,6 +46,6 @@ export interface IGetFutsals {
  success: boolean;
  data: FutsalData;
  errors: null;
-} 
+}
 
 // Here interface defines the shape/structure of an Object.While fetching the data from the API , it should contain all these required data.

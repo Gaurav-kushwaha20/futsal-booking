@@ -50,19 +50,28 @@ export const FutsalCard: React.FC<IProjectCardProps> = ({
                <div className="flex flex-col gap-2 bg-background-50 p-2.5">
                   <div className="flex justify-between items-center">
                      <span className="text-black-300 typography-p2-regular">
-                        Registration Number
+                        Latitude
                      </span>
                      <span className="text-blue-400 typography-p2-semibold">
-                        {data?.registrationNumber}
+                        {data?.latitude}
+                     </span>
+                  </div>
+                  
+                  <div className="flex justify-between items-center">
+                     <span className="text-black-300 typography-p2-regular">
+                        Longitude
+                     </span>
+                     <span className="text-blue-400 typography-p2-semibold">
+                        {data?.longitude}
                      </span>
                   </div>
 
                   <div className="flex justify-between items-center">
                      <span className="text-black-300 typography-p2-regular">
-                        Full Name:
+                        District
                      </span>
                      <span className="text-blue-400 typography-p2-semibold">
-                        {data?.owner?.fullName || data?.owner?.fullName}
+                        {data?.city}
                      </span>
                   </div>
 
@@ -71,7 +80,7 @@ export const FutsalCard: React.FC<IProjectCardProps> = ({
                         Phone No.
                      </span>
                      <span className="text-blue-400 typography-p2-semibold">
-                        {data?.owner?.phone_no}
+                        {data?.district}
                      </span>
                   </div>
 
