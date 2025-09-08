@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { logoutUser } from "@/store/features/authSlice";
 import type { BaseQueryApi, BaseQueryArg } from '@reduxjs/toolkit/query';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { clearAllCookies, getCookie, setCookie } from './cookie';
@@ -96,7 +95,6 @@ const baseQueryWithReauth = async (args: BaseQueryArg<any>, api: BaseQueryApi, e
    result = await baseQuery(args, api, extraOptions);
   } else {
    clearAllCookies();
-   window.location.href = '/';
   }
  }
  return result;

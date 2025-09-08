@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-interface UseDisclosureReturn {
+export interface UseDisclosureReturn {
  isOpen: boolean;
  open: () => void;
  close: () => void;

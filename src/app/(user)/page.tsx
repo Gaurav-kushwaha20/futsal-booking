@@ -3,7 +3,7 @@ import HeroSection from './partials/HeroSection'
 
 const page = () => {
    return (
-      <div className='min-h-screen max-w-screen'>
+      <div className='max-w-full overflow-y-auto'>
          <HeroSection />
       </div>
    )

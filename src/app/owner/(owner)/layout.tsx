@@ -1,5 +1,5 @@
 "use client"
-import Sidebar from "@/common/Sidebar";
+import Sidebar from "@/common/sidebar/SideBar";
 import { useEffect, useState } from "react";
 import Header from "@/common/header/Header";
 import { COOKIE_CONFIG } from "@/constant/cookie.constant";

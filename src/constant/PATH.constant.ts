@@ -1,8 +1,13 @@
 export const PATH = {
- dashboard: '/',
- login: '/login',
- reset: '/reset',
- userDashboard: '/user',
+ user: {
+  home: '/',
+  resetPassword: '',
+  booking: '/bookings',
+  about: '/about',
+  futsals: '/futsals',
+  login: '/login',
+  register: '/register',
+ },
  // owner routes
  owner: {
   login: '/owner/login',
