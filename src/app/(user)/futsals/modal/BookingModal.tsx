@@ -1,3 +1,4 @@
+import Button from '@/components/form/Button'
 import InputDate from '@/components/form/InputDate'
 import InputText from '@/components/form/InputText'
 import ReactSelect, { IOption } from '@/components/form/ReactSelect'
@@ -18,13 +19,12 @@ const BookingModal: React.FC<IProps> = ({ formik, timeSlotList }) => {
                 <InputDate label='Date' name='bookedDate' />
                 <ReactSelect label='Time Slot' name='bookedTime' options={timeSlotList} />
 
-                <button
-                    onClick={(e) => {
-                        e.preventDefault()
-                        formik.handleSubmit()
-                    }}
-                    className='mb-10 mt-20 w-full bg-blue-500 text-white px-6 py-4 rounded-xl flex items-center justify-center'>Submit</button>
-
+                <Button className='w-full' onClick={(e) => {
+                    e.preventDefault()
+                    formik.handleSubmit()
+                }}>
+                    Submit
+                </Button>
             </form>
         </FormikProvider>
     )

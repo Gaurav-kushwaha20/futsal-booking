@@ -4,8 +4,8 @@ import React from 'react'
 
 const HeroSection = () => {
    return (
-      <div className="relative w-screen h-screen bg-cover bg-center bg-no-repeat">
-         <div className="absolute h-full w-screen aspect-video -z-10 inset-0">
+      <div className="relative h-screen bg-cover bg-center bg-no-repeat">
+         <div className="absolute h-full -z-10 inset-0">
             <Image
                alt="hero section background image"
                src={"/hero/2.png"}
