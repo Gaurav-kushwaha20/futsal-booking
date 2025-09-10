@@ -1,6 +1,7 @@
 "use client"
 import Header from "@/common/header/Header";
 import "../globals.css";
+import UserLoginModal from "@/components/modal/UserLoginModal";
 
 export default function UserLayout({
    children,
@@ -21,6 +22,8 @@ export default function UserLayout({
             <main className="flex-1 flex flex-col mt-3.5 overflow-hidden rounded-xl px-4 py-5">
                {children}
             </main>
+
+            <UserLoginModal />
          </div>
       </div>
    );

@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { BaseQueryApi, BaseQueryArg } from '@reduxjs/toolkit/query';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { clearAllCookies, getCookie, setCookie } from './cookie';
+import { clearAllCookies, getCookie } from './cookie';
 import { COOKIE_CONFIG } from '@/constant/cookie.constant';
 import { endpoints } from '@/constant/endpoints.constant';
+import { openModal } from '@/store/slices/loginModalSlice';
+import { loginUser } from './auth.services';
 
 interface IGetDataArgs {
  url: string;
@@ -61,13 +63,15 @@ const baseQuery = fetchBaseQuery({
   headers.set('Accept', 'application/json');
   return headers;
  },
- // credentials: "include",
+ credentials: 'include',
 });
 
 const baseQueryWithReauth = async (args: BaseQueryArg<any>, api: BaseQueryApi, extraOptions: any) => {
  let result = await baseQuery(args, api, extraOptions);
  if (result.error && (result?.error?.status === 401 || result?.error?.status === 500)) {
   const refreshToken = getCookie(COOKIE_CONFIG.refresh);
+  const { store } = await import('@/store/store');
+
   const refreshResult = await baseQuery(
    {
     url: endpoints.auth.refreshtoken,
@@ -82,25 +86,18 @@ const baseQueryWithReauth = async (args: BaseQueryArg<any>, api: BaseQueryApi, e
     access: string;
     refresh: string;
    };
-   setCookie({
-    cookieName: COOKIE_CONFIG.access,
-    value: access,
-    expiresIn: COOKIE_CONFIG.accessTime,
-   });
-   setCookie({
-    cookieName: COOKIE_CONFIG.refresh,
-    value: refresh,
-    expiresIn: COOKIE_CONFIG.refreshTime,
-   });
+   store.dispatch(loginUser({ accessToken: access, refreshToken: refresh, isUserLoggedIn: true }));
    result = await baseQuery(args, api, extraOptions);
   } else {
    clearAllCookies();
+   store.dispatch(openModal());
   }
  }
  return result;
 };
 
 export const apiSlice = createApi({
+ reducerPath: 'api',
  baseQuery: baseQueryWithReauth,
  tagTypes: ['Data'],
  endpoints: (builder) => ({

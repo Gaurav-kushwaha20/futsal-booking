@@ -1,30 +1,28 @@
-"use client";
-import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
-import * as Yup from "yup";
-import { useRouter } from "next/navigation";
-import { usePostDataMutation } from "@/service/api";
-import { endpoints } from "@/constant/endpoints.constant";
-import { PATH } from "@/constant/PATH.constant";
-import { showErrorMessage, showSuccessMessage } from "@/service/toast.services";
-import { loginUser } from "@/service/auth.services";
-import { ILoginOwner, ILoginOwnerError } from "../interface/ILogin";
+'use client';
+import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import * as Yup from 'yup';
+import { usePostDataMutation } from '@/service/api';
+import { endpoints } from '@/constant/endpoints.constant';
+import { showErrorMessage, showSuccessMessage } from '@/service/toast.services';
+import { loginUser } from '@/service/auth.services';
+import { ILoginOwner, ILoginOwnerError } from '../interface/ILogin';
+import { closeModal } from '@/store/slices/loginModalSlice';
 
 const useLogin = () => {
- const router = useRouter();
  const dispatch = useDispatch();
  const [login, { isLoading, isSuccess, isError }] = usePostDataMutation();
 
  const initialValues = {
-  username: "",
-  password: "",
+  username: '',
+  password: '',
  };
 
  const formik = useFormik({
   initialValues,
   validationSchema: Yup.object().shape({
-   username: Yup.string().required("Username is required"),
-   password: Yup.string().required("Password is required"),
+   username: Yup.string().required('Username is required'),
+   password: Yup.string().required('Password is required'),
   }),
   onSubmit: async (values) => {
    const res = await login({
@@ -39,11 +37,12 @@ const useLogin = () => {
      loginUser({
       accessToken: response.data.token.access,
       refreshToken: response.data.token.refresh,
+      userName: response?.data?.user?.username,
       userId: response.data.user.id,
       isUserLoggedIn: true,
      })
     );
-    router.replace(PATH.owner.dashboard);
+    dispatch(closeModal());
     showSuccessMessage(response?.message);
    } else if (error) {
     showErrorMessage(error?.data?.message);

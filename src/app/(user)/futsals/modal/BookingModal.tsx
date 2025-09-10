@@ -4,9 +4,10 @@ import InputText from '@/components/form/InputText'
 import ReactSelect, { IOption } from '@/components/form/ReactSelect'
 import { FormikProps, FormikProvider } from 'formik'
 import React from 'react'
+import { BookingForm } from '../hooks/useBooking'
 
 interface IProps {
-    formik: FormikProps<any>
+    formik: FormikProps<BookingForm>
     timeSlotList: IOption[]
 }
 

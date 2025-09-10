@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { PATH } from '@/constant/PATH.constant';
 import useLogin from '../hooks/useLogin';
 import { FormikProvider } from 'formik';
 import InputText from '@/components/form/InputText';
@@ -37,7 +36,7 @@ const LoginComponent: React.FC = () => {
 
                 <div className="mt-6 text-center text-sm">
                     <p className="text-black">Forgot your password?</p>
-                    <Link href={PATH.reset} className="text-blue-600 hover:underline">
+                    <Link href={'#'} className="text-blue-600 hover:underline">
                         Reset Password
                     </Link>
                 </div>

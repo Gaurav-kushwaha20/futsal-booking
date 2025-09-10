@@ -34,6 +34,7 @@ export interface IUserLoginSuccess {
  errors: null;
 }
 
+// Login error response
 export interface IUserLoginError {
  data: {
   message: string;

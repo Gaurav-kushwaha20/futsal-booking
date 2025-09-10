@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React from 'react'
 import FutsalCard from '@/components/FutsalCard';
 import useFutsals from './hooks/useFutsals';
 import LoadingScreen from '@/components/LoadingScreen';

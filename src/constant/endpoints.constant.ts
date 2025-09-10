@@ -1,6 +1,7 @@
 export const endpoints = {
  auth: {
   refreshtoken: '/auth/refresh',
+  me: '/auth/me',
  },
  userLogin: '/auth/login',
  ownerLogin: '/auth/owner/login',

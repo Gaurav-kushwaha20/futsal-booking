@@ -1,4 +1,3 @@
-import FutsalCard from '@/components/FutsalCard';
 import { endpoints } from '@/constant/endpoints.constant';
 import useDisclosure from '@/lib/useDisclosure';
 import useStringState from '@/lib/useStringState';
@@ -37,7 +36,7 @@ export const useBooking = () => {
   customerName: '',
   phone: '',
  };
- const formik = useFormik({
+ const formik = useFormik<BookingForm>({
   initialValues,
   onSubmit: async (values) => {
    const response = (await createBooking({
@@ -63,5 +62,5 @@ export const useBooking = () => {
  );
  const timeSlotList: IOption[] = data?.data?.data?.map((item) => ({ label: `${item?.startTime} - ${item?.endTime}`, value: item?.startTime }));
 
- return { bookingModalState, futsalIdState, handleBook, formik, timeSlotList };
+ return { bookingModalState, futsalIdState, handleBook, formik, timeSlotList, isLoading };
 };
