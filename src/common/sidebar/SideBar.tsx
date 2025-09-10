@@ -19,7 +19,7 @@ const Sidebar = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
 
   const handleLogout = () => {
     clearAllCookies();
-    router.push(PATH.login);
+    router.push(PATH.user.home);
   };
 
   const toggleDropdown = (id: string) => {

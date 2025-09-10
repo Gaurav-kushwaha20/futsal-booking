@@ -2,16 +2,14 @@
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
-import { useRouter } from 'next/navigation';
 import { usePostDataMutation } from '@/service/api';
 import { endpoints } from '@/constant/endpoints.constant';
-import { PATH } from '@/constant/PATH.constant';
 import { showErrorMessage, showSuccessMessage } from '@/service/toast.services';
 import { loginUser } from '@/service/auth.services';
 import { IUserLogin, IUserLoginError, IUserLoginSuccess } from '@/interface/IUserLogin';
+import { closeModal } from '@/store/slices/loginModalSlice';
 
 export const useUserLogin = () => {
- const router = useRouter();
  const dispatch = useDispatch();
  const [login, { isLoading, isSuccess, isError }] = usePostDataMutation();
 
@@ -31,20 +29,20 @@ export const useUserLogin = () => {
     url: endpoints.userLogin,
     data: values,
    });
-
    console.log(res);
    const response = res?.data as IUserLoginSuccess;
    const error = res?.error as IUserLoginError;
    if (response && response?.success) {
     dispatch(
      loginUser({
-      accessToken: response.data.token.access,
-      refreshToken: response.data.token.refresh,
-      userId: response.data.user.id,
+      accessToken: response?.data?.token?.access,
+      refreshToken: response?.data?.token?.refresh,
+      userName: response?.data?.user?.username,
+      userId: response?.data?.user?.id,
       isUserLoggedIn: true,
      })
     );
-    router.replace(PATH.user.home);
+    dispatch(closeModal());
     showSuccessMessage(response?.message);
    } else if (error) {
     showErrorMessage(error?.data?.message);

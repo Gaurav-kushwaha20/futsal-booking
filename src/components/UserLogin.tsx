@@ -11,7 +11,7 @@ import { PATH } from '@/constant/PATH.constant'
 const UserLogin = () => {
     const userLogin = useUserLogin()
     return (
-        <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500">
+        <div className="flex items-center justify-center py-8 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 rounded-lg">
             <div className="w-full max-w-xl bg-white rounded-lg px-6 py-10 shadow-md">
                 <div className="text-center mb-8">
                     <p className="text-xl font-semibold">Welcome Back</p>

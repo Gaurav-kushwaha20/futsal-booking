@@ -1,5 +1,5 @@
 import React from 'react';
-import Select, { components } from 'react-select';
+import Select, { components, DropdownIndicatorProps } from 'react-select';
 import { useField, useFormikContext } from 'formik';
 import { ErrorMessage } from 'formik';
 import { PlayIcon } from 'lucide-react';
@@ -38,7 +38,7 @@ const ReactSelect: React.FC<IInputReactSelect> = ({
   const { setFieldValue } = useFormikContext();
 
   const customComponents = {
-    DropdownIndicator: (props: any) => (
+    DropdownIndicator: (props: DropdownIndicatorProps<IOption, false>) => (
       <components.DropdownIndicator {...props}>
         <PlayIcon className="rotate-90" />
       </components.DropdownIndicator>

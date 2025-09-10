@@ -1,12 +1,13 @@
-"use client";
-import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { clearAllCookies, getCookie, setCookie } from "./cookie";
-import { COOKIE_CONFIG } from "@/constant/cookie.constant";
-import { apiSlice } from "./api";
-import { RootState } from "@/store/store";
+'use client';
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { clearAllCookies, setCookie } from './cookie';
+import { COOKIE_CONFIG } from '@/constant/cookie.constant';
+import { apiSlice } from './api';
+import { RootState } from '@/store/store';
 
 interface User {
- id: string;
+ id?: string;
+ userName?: string;
 }
 
 interface IAuthStateReturn {
@@ -17,7 +18,8 @@ interface IAuthStateReturn {
 interface LoginPayload {
  accessToken: string;
  refreshToken: string;
- userId: string;
+ userId?: string;
+ userName?: string;
  isUserLoggedIn: boolean;
 }
 
@@ -32,43 +34,22 @@ const initialAuthState: AuthState = {
 };
 
 const getInitialState = (): AuthState => {
- if (typeof window === "undefined") {
+ if (typeof window === 'undefined') {
   return initialAuthState;
  }
-
- try {
-  const userId = localStorage.getItem("userId");
-  const refreshToken = getCookie(COOKIE_CONFIG.refresh);
-  if (userId && refreshToken) {
-   return {
-    user: { id: userId },
-    isLoggedIn: true,
-   };
-  } else {
-   clearAllCookies();
-   return {
-    user: null,
-    isLoggedIn: false,
-   };
-  }
- } catch (e) {
-  console.error(e);
-  return {
-   user: null,
-   isLoggedIn: false,
-  };
- }
+ return {
+  isLoggedIn: false,
+  user: null,
+ };
 };
 
 const authSlice = createSlice({
- name: "auth",
+ name: 'auth',
  initialState: getInitialState(),
  reducers: {
   loginUser: (state, action: PayloadAction<LoginPayload>) => {
-   state.user = { id: action.payload.userId };
+   state.user = { id: action.payload.userId, userName: action.payload.userName };
    state.isLoggedIn = true;
-
-   localStorage.setItem("userId", action.payload.userId);
    setCookie({
     cookieName: COOKIE_CONFIG.access,
     value: action.payload.accessToken,

@@ -1,14 +1,16 @@
 "use client"
-import { useModal } from '@/context/UserLoginContext'
 import React from 'react'
 import Modal from '../Modal';
 import UserLogin from '../UserLogin';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
+import { closeModal } from '@/store/slices/loginModalSlice';
 
 const UserLoginModal = () => {
-    const modalContext = useModal();
-    if (!modalContext.isOpen) return null
+    const dispatch = useDispatch()
+    const isOpen = useSelector((state: RootState) => state.login_modal.showLoginModal)
     return (
-        <Modal isOpen={modalContext.isOpen} name='Login' onOpenChange={modalContext.close}>
+        <Modal isOpen={isOpen} name='User Login' onOpenChange={() => { dispatch(closeModal()) }}>
             <UserLogin />
         </Modal>
     )

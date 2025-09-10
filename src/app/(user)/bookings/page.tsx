@@ -7,7 +7,7 @@ import { List } from 'lucide-react'
 import Table from '@/components/Table'
 import { parseDate } from '@/lib/parseDate'
 
-const page = () => {
+const Page = () => {
     const { data } = useGetUserBooking()
     const column: ColumnDef<IBooking>[] = [
         {
@@ -87,4 +87,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

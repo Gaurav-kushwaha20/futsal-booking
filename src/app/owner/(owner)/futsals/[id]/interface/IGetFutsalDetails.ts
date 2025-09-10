@@ -1,4 +1,4 @@
-import { IApiDetailResponse } from '@/interface/IResponse';
+import { IApiDetailsResponse } from '@/interface/IResponse';
 
 export interface FutsalData {
  id: number;
@@ -13,4 +13,4 @@ export interface FutsalData {
  images: string[];
 }
 
-export type IFutsalDetailsResponse = IApiDetailResponse<FutsalData>;
+export type IFutsalDetailsResponse = IApiDetailsResponse<FutsalData>;

@@ -1,10 +1,12 @@
-import { apiSlice } from "@/service/api";
-import authSlice from "@/service/auth.services";
-import { configureStore } from "@reduxjs/toolkit";
+import { apiSlice } from '@/service/api';
+import authSlice from '@/service/auth.services';
+import { configureStore } from '@reduxjs/toolkit';
+import loginModalReducer from './slices/loginModalSlice';
 
 export const store = configureStore({
  reducer: {
   auth: authSlice.reducer,
+  login_modal: loginModalReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
  },
  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
