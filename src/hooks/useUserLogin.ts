@@ -1,13 +1,14 @@
 'use client';
+
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { usePostDataMutation } from '@/service/api';
 import { endpoints } from '@/constant/endpoints.constant';
 import { showErrorMessage, showSuccessMessage } from '@/service/toast.services';
-import { loginUser } from '@/service/auth.services';
+import { loginUser } from '@/store/slices/authSlices';
 import { IUserLogin, IUserLoginError, IUserLoginSuccess } from '@/interface/IUserLogin';
-import { closeModal } from '@/store/slices/loginModalSlice';
+import { closeUserLoginModal } from '@/store/slices/userLoginModalSlice';
 
 export const useUserLogin = () => {
  const dispatch = useDispatch();
@@ -29,7 +30,6 @@ export const useUserLogin = () => {
     url: endpoints.userLogin,
     data: values,
    });
-   console.log(res);
    const response = res?.data as IUserLoginSuccess;
    const error = res?.error as IUserLoginError;
    if (response && response?.success) {
@@ -40,9 +40,10 @@ export const useUserLogin = () => {
       userName: response?.data?.user?.username,
       userId: response?.data?.user?.id,
       isUserLoggedIn: true,
+      profilePicture: response?.data?.user?.profile_picture ?? undefined,
      })
     );
-    dispatch(closeModal());
+    dispatch(closeUserLoginModal());
     showSuccessMessage(response?.message);
    } else if (error) {
     showErrorMessage(error?.data?.message);

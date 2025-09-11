@@ -6,6 +6,7 @@ import { COOKIE_CONFIG } from "@/constant/cookie.constant";
 import { useRouter } from "next/navigation";
 import { PATH } from "@/constant/PATH.constant";
 import { getCookie } from "@/service/cookie";
+import OwnerLoginModal from "@/components/modal/OwnerLoginModal";
 
 export default function UserLayout({
    children,
@@ -23,20 +24,18 @@ export default function UserLayout({
       }
    }, [isLoggedIn, router]);
    return (
-      <div className="flex flex-col bg-[#F3F4F6] h-screen">
+      <div className="flex flex-col h-screen bg-gray-100">
          <Header toggleSidebar={toggleSidebar} />
          <div className="flex flex-1 overflow-hidden">
             <Sidebar isSidebarOpen={isSidebarOpen} />
-            <main className="relative flex-1 -mt-8 -ml-4 pt-8 overflow-hidden">
-               <div className="flex flex-col bg-white shadow-xl px-4 w-full h-full min-h-0 overflow-auto">
-                  <div className="flex-1 shadow-inner p-4 rounded-t-xl">
-                     <div className="mx-auto w-full max-w-full">
-                        {children}
-                     </div>
-                  </div>
+            <main className="flex-1 overflow-auto p-6 bg-white shadow-md rounded-t-xl">
+               <div className="max-w-full mx-auto">
+                  {children}
+                  <OwnerLoginModal />
                </div>
             </main>
          </div>
       </div>
+
    );
 }

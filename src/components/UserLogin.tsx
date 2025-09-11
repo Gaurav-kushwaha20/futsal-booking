@@ -7,6 +7,7 @@ import InputText from './form/InputText'
 import InlineLoader from './InlineLoader'
 import Link from 'next/link'
 import { PATH } from '@/constant/PATH.constant'
+import Button from './form/Button'
 
 const UserLogin = () => {
     const userLogin = useUserLogin()
@@ -24,14 +25,14 @@ const UserLogin = () => {
                             <InputText label="Username" name="username" placeholder="Enter Username" />
                             <InputText label="Password" name="password" type="password" placeholder="Enter password" />
 
-                            <button
+                            <Button
                                 type="submit"
                                 disabled={userLogin.isLoading}
                                 className="w-full h-11 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center gap-2 transition"
                             >
                                 <span>Sign In</span>
                                 {userLogin.isLoading && <InlineLoader className="text-white" />}
-                            </button>
+                            </Button>
                         </div>
                     </form>
                 </FormikProvider>

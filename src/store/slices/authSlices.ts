@@ -1,13 +1,14 @@
 'use client';
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { clearAllCookies, setCookie } from './cookie';
+import { clearAllCookies, setCookie } from '../../service/cookie';
 import { COOKIE_CONFIG } from '@/constant/cookie.constant';
-import { apiSlice } from './api';
+import { apiSlice } from '../../service/api';
 import { RootState } from '@/store/store';
 
 interface User {
  id?: string;
  userName?: string;
+ profilePicture?: string;
 }
 
 interface IAuthStateReturn {
@@ -20,6 +21,7 @@ interface LoginPayload {
  refreshToken: string;
  userId?: string;
  userName?: string;
+ profilePicture?: string;
  isUserLoggedIn: boolean;
 }
 
@@ -50,6 +52,7 @@ const authSlice = createSlice({
   loginUser: (state, action: PayloadAction<LoginPayload>) => {
    state.user = { id: action.payload.userId, userName: action.payload.userName };
    state.isLoggedIn = true;
+   state.user.profilePicture = action.payload.profilePicture;
    setCookie({
     cookieName: COOKIE_CONFIG.access,
     value: action.payload.accessToken,

@@ -1,23 +1,64 @@
+import { PATH } from "@/constant/PATH.constant";
+import { useClickOutside } from "@/lib/useClickOutside";
+import { logoutUser } from "@/store/slices/authSlices";
+import { closeOwnerLoginModal, openOwnerLoginModal } from "@/store/slices/ownerLoginModalSlice";
+import { closeUserLoginModal, openUserLoginModal } from "@/store/slices/userLoginModalSlice";
+import { RootState } from "@/store/store";
+import { useRouter } from "next/navigation";
 import { IoSettingsOutline } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProfileSection = () => {
+  const profileMenu = useClickOutside()
+  const router = useRouter();
+  const profile = useSelector((state: RootState) => state.auth.user?.profilePicture)
+  const dispatch = useDispatch();
+
+  const handleSignInUser = () => {
+    router.push(PATH.user.home);
+    dispatch(openUserLoginModal())
+  }
+
+  const handleSignIOwner = () => {
+    router.push(PATH.owner.dashboard);
+    dispatch(openOwnerLoginModal())
+  }
+  const handleLogout = () => {
+    dispatch(closeUserLoginModal())
+    dispatch(closeOwnerLoginModal())
+    dispatch(logoutUser())
+  }
   return (
     <div className="flex items-center gap-1 bg-primary-100 p-1 rounded-full w-fit">
       {/* Profile Avatar */}
       <div className="rounded-full w-12 h-10 overflow-hidden">
         <img
-          src={
-            "https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=76&q=80"
-          }
+          src={profile || '/profile.png'}
           alt="Profile"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover hover-scale-125"
         />
       </div>
 
       {/* Settings Icon */}
-      <div className="flex justify-center items-center rounded-full w-10 h-10">
-        <IoSettingsOutline className="w-7 h-7 text-primary-500" />
+      <div ref={profileMenu.ref} className="relative flex justify-center items-center rounded-full w-10 h-10">
+        <IoSettingsOutline onClick={profileMenu.modalState.toggle} className="w-7 h-7 hover-scale-125 text-primary-500" />
+
+        {profileMenu.modalState.isOpen && <div className="absolute z-10 top-12 right-0">
+          <ul className="bg-white shadow-lg rounded-lg w-48 py-2 text-gray-700">
+            <li onClick={handleSignInUser} className="px-4 py-2 hover:bg-blue-500 hover:text-white cursor-pointer rounded-md transition">
+              Sign In as User
+            </li>
+            <li onClick={handleSignIOwner} className="px-4 py-2 hover:bg-blue-500 hover:text-white cursor-pointer rounded-md transition">
+              Sign In as Owner
+            </li>
+            <li onClick={handleLogout} className="px-4 py-2 hover:bg-blue-500 hover:text-white cursor-pointer rounded-md transition">
+              Log Out
+            </li>
+          </ul>
+        </div>}
+
       </div>
+
     </div>
   );
 };

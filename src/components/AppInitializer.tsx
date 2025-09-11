@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { endpoints } from '@/constant/endpoints.constant'
 import { useGetDataQuery } from '@/service/api'
 import { useDispatch } from 'react-redux'
-import { setUser } from '@/service/auth.services'
+import { setUser } from '@/store/slices/authSlices'
 import { IApiDetailsResponse } from '@/interface/IResponse'
 
 type CurrentUserType = IApiDetailsResponse<{
