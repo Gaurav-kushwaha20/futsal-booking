@@ -4,8 +4,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { clearAllCookies, getCookie } from './cookie';
 import { COOKIE_CONFIG } from '@/constant/cookie.constant';
 import { endpoints } from '@/constant/endpoints.constant';
-import { openModal } from '@/store/slices/loginModalSlice';
+import { openUserLoginModal } from '@/store/slices/userLoginModalSlice';
 import { loginUser } from './auth.services';
+import { openOwnerLoginModal } from '@/store/slices/ownerLoginModalSlice';
 
 interface IGetDataArgs {
  url: string;
@@ -90,7 +91,8 @@ const baseQueryWithReauth = async (args: BaseQueryArg<any>, api: BaseQueryApi, e
    result = await baseQuery(args, api, extraOptions);
   } else {
    clearAllCookies();
-   store.dispatch(openModal());
+   store.dispatch(openUserLoginModal());
+   store.dispatch(openOwnerLoginModal());
   }
  }
  return result;

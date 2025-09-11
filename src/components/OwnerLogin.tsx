@@ -1,13 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import useLogin from '../hooks/useLogin';
 import { FormikProvider } from 'formik';
 import InputText from '@/components/form/InputText';
 import InlineLoader from '@/components/InlineLoader';
+import { useOwnerLogin } from '@/hooks/useOwnerLogin';
 
-const LoginComponent: React.FC = () => {
-    const { formik, isLoading } = useLogin();
-
+const OwnerLogin: React.FC = () => {
+    const { formik, isLoading } = useOwnerLogin();
     return (
         <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500">
             <div className="w-full max-w-xl bg-white rounded-lg px-6 py-10 shadow-md">
@@ -44,5 +43,4 @@ const LoginComponent: React.FC = () => {
         </div>
     );
 };
-
-export default LoginComponent;
+export default OwnerLogin;

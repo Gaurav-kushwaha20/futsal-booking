@@ -1,12 +1,10 @@
 "use client"
 import React from 'react'
-import LoginComponent from './partials/LoginComponent'
+import LoginComponent from '../../../components/OwnerLogin'
 
 const page = () => {
    return (
-      <div>
-         <LoginComponent />
-      </div>
+      <LoginComponent />
    )
 }
 export default page

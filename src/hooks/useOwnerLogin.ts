@@ -1,4 +1,5 @@
 'use client';
+
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
@@ -6,10 +7,9 @@ import { usePostDataMutation } from '@/service/api';
 import { endpoints } from '@/constant/endpoints.constant';
 import { showErrorMessage, showSuccessMessage } from '@/service/toast.services';
 import { loginUser } from '@/service/auth.services';
-import { ILoginOwner, ILoginOwnerError } from '../interface/ILogin';
-import { closeModal } from '@/store/slices/loginModalSlice';
+import { ILoginOwner, ILoginOwnerError } from '@/interface/IOwnerLogin';
 
-const useLogin = () => {
+export const useOwnerLogin = () => {
  const dispatch = useDispatch();
  const [login, { isLoading, isSuccess, isError }] = usePostDataMutation();
 
@@ -42,7 +42,6 @@ const useLogin = () => {
       isUserLoggedIn: true,
      })
     );
-    dispatch(closeModal());
     showSuccessMessage(response?.message);
    } else if (error) {
     showErrorMessage(error?.data?.message);
@@ -52,5 +51,3 @@ const useLogin = () => {
 
  return { formik, isLoading, isSuccess, isError };
 };
-
-export default useLogin;

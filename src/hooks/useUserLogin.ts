@@ -1,4 +1,5 @@
 'use client';
+
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
@@ -7,7 +8,7 @@ import { endpoints } from '@/constant/endpoints.constant';
 import { showErrorMessage, showSuccessMessage } from '@/service/toast.services';
 import { loginUser } from '@/service/auth.services';
 import { IUserLogin, IUserLoginError, IUserLoginSuccess } from '@/interface/IUserLogin';
-import { closeModal } from '@/store/slices/loginModalSlice';
+import { closeUserLoginModal } from '@/store/slices/userLoginModalSlice';
 
 export const useUserLogin = () => {
  const dispatch = useDispatch();
@@ -42,7 +43,7 @@ export const useUserLogin = () => {
       isUserLoggedIn: true,
      })
     );
-    dispatch(closeModal());
+    dispatch(closeUserLoginModal());
     showSuccessMessage(response?.message);
    } else if (error) {
     showErrorMessage(error?.data?.message);
