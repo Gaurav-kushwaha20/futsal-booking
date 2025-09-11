@@ -4,11 +4,12 @@ import { FormikProvider } from 'formik';
 import InputText from '@/components/form/InputText';
 import InlineLoader from '@/components/InlineLoader';
 import { useOwnerLogin } from '@/hooks/useOwnerLogin';
+import Button from './form/Button';
 
 const OwnerLogin: React.FC = () => {
     const { formik, isLoading } = useOwnerLogin();
     return (
-        <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500">
+        <div className="flex items-center justify-center bg-gradient-to-b py-8 from-blue-500 via-purple-500 to-pink-500 rounded-lg">
             <div className="w-full max-w-xl bg-white rounded-lg px-6 py-10 shadow-md">
                 <div className="text-center mb-8">
                     <p className="text-xl font-semibold">Owner Login</p>
@@ -21,14 +22,16 @@ const OwnerLogin: React.FC = () => {
                             <InputText label="Username" name="username" placeholder="Enter Username" />
                             <InputText label="Password" name="password" type="password" placeholder="Enter password" />
 
-                            <button
+                            <Button
                                 type="submit"
                                 disabled={isLoading}
                                 className="w-full h-11 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center gap-2 transition"
                             >
                                 <span>Sign In As Owner</span>
                                 {isLoading && <InlineLoader className="text-white" />}
-                            </button>
+                            </Button>
+
+
                         </div>
                     </form>
                 </FormikProvider>

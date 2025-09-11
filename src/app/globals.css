@@ -143,3 +143,11 @@
   @apply bg-background text-foreground;
  }
 }
+
+/* Hover scale */
+@utility hover-scale-125 {
+ @apply cursor-pointer hover:scale-125 transition-all duration-300;
+}
+@utility hover-scale-110 {
+ @apply cursor-pointer hover:scale-110 transition-all duration-300;
+}

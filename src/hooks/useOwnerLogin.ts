@@ -6,8 +6,9 @@ import * as Yup from 'yup';
 import { usePostDataMutation } from '@/service/api';
 import { endpoints } from '@/constant/endpoints.constant';
 import { showErrorMessage, showSuccessMessage } from '@/service/toast.services';
-import { loginUser } from '@/service/auth.services';
+import { loginUser } from '@/store/slices/authSlices';
 import { ILoginOwner, ILoginOwnerError } from '@/interface/IOwnerLogin';
+import { closeOwnerLoginModal } from '@/store/slices/ownerLoginModalSlice';
 
 export const useOwnerLogin = () => {
  const dispatch = useDispatch();
@@ -39,9 +40,11 @@ export const useOwnerLogin = () => {
       refreshToken: response.data.token.refresh,
       userName: response?.data?.user?.username,
       userId: response.data.user.id,
+      profilePicture: response?.data?.user?.profileImageUrl ?? undefined,
       isUserLoggedIn: true,
      })
     );
+    dispatch(closeOwnerLoginModal());
     showSuccessMessage(response?.message);
    } else if (error) {
     showErrorMessage(error?.data?.message);

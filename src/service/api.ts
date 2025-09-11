@@ -5,7 +5,7 @@ import { clearAllCookies, getCookie } from './cookie';
 import { COOKIE_CONFIG } from '@/constant/cookie.constant';
 import { endpoints } from '@/constant/endpoints.constant';
 import { openUserLoginModal } from '@/store/slices/userLoginModalSlice';
-import { loginUser } from './auth.services';
+import { loginUser } from '../store/slices/authSlices';
 import { openOwnerLoginModal } from '@/store/slices/ownerLoginModalSlice';
 
 interface IGetDataArgs {
