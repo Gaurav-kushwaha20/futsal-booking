@@ -9,6 +9,7 @@ import { IApiDetailsResponse } from '@/interface/IResponse'
 type CurrentUserType = IApiDetailsResponse<{
     id: string;
     username: string;
+    profile: string | null
 }>
 
 const AppInitializer: React.FC = () => {
@@ -17,7 +18,7 @@ const AppInitializer: React.FC = () => {
         url: endpoints.auth.me
     })
     useEffect(() => {
-        dispatch(setUser({ id: data?.data?.id, userName: data?.data?.username }))
+        dispatch(setUser({ id: data?.data?.id, userName: data?.data?.username, profilePicture: data?.data?.profile ?? undefined }))
     }, [])
     return null;
 }

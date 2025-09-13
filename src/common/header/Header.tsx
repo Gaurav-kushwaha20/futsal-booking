@@ -28,9 +28,9 @@ const Header: React.FC<IProps> = (props) => {
           </div>
         }
 
-        <div className="h-full flex items-center gap-6 rounded-xl bg-white px-6">
-          {props?.navitems && props?.navitems?.length > 0 &&
-            props.navitems.map((item) => (
+        {props?.navitems && props?.navitems?.length > 0 &&
+          <div className="h-full flex items-center gap-6 rounded-xl bg-white px-6">
+            {props.navitems.map((item) => (
               <Link
                 key={item?.link}
                 href={item?.link}
@@ -39,7 +39,8 @@ const Header: React.FC<IProps> = (props) => {
                 {item?.label}
               </Link>
             ))}
-        </div>
+          </div>
+        }
 
       </div>
       <div className="flex items-center gap-4">

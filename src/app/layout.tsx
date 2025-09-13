@@ -3,8 +3,6 @@ import { ReduxProvider } from "@/components/ReduxProvider";
 import './globals.css';
 import ProtectedRoutes from "@/components/ProtectedRoutes";
 import { Inter } from "next/font/google";
-import UserLoginModal from "@/components/modal/UserLoginModal";
-import { ModalProvider } from "@/context/UserLoginContext";
 import AppInitializer from "@/components/AppInitializer";
 
 export const metadata: Metadata = {
@@ -28,9 +26,6 @@ export default function RootLayout({
               <AppInitializer />
               {/* fetch the current the  user data from the server then update into redux store */}
               {children}
-              <ModalProvider>
-                <UserLoginModal />
-              </ModalProvider>
             </div>
           </ProtectedRoutes>
         </ReduxProvider>
