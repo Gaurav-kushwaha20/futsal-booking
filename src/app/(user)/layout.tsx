@@ -14,6 +14,7 @@ export default function UserLayout({
             navitems={[
                { label: "Home", link: "/" },
                { label: "Futsals", link: "/futsals" },
+               { label: "Message", link: "/message" },
                { label: "About", link: "/about" },
                { label: "Bookings", link: "/bookings" },
 
