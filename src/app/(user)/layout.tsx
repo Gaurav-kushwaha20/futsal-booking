@@ -1,7 +1,7 @@
 "use client"
 import Header from "@/common/header/Header";
 import "../globals.css";
-import UserLoginModal from "@/components/modal/UserLoginModal";
+// import UserLoginModal from "@/components/modal/UserLoginModal";
 
 export default function UserLayout({
    children,
@@ -24,7 +24,7 @@ export default function UserLayout({
                {children}
             </main>
 
-            <UserLoginModal />
+            {/* <UserLoginModal /> */}
          </div>
       </div>
    );

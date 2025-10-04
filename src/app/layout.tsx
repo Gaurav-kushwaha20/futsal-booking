@@ -23,8 +23,8 @@ export default function RootLayout({
         <ReduxProvider>
           <ProtectedRoutes>
             <div className="max-w-[120rem] mx-auto">
-              <AppInitializer />
               {/* fetch the current the  user data from the server then update into redux store */}
+              <AppInitializer />
               {children}
             </div>
           </ProtectedRoutes>
