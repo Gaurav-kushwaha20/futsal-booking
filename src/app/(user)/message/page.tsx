@@ -29,13 +29,13 @@ const Page = () => {
             console.log("Connected to WebSocket");
 
             // Subscribe to conversation topic
-            stompClient.subscribe("/topic/conversations/1", (message) => {
+            stompClient.subscribe("/user/queue/conversation", (message) => {
                 console.log("New message received:", JSON.parse(message.body));
             });
 
             // Send a test message
             stompClient.publish({
-                destination: "/app/chat.sendMessage",
+                destination: "/app/chat.getConversation",
                 body: JSON.stringify({
                     conversation: { id: 1 },
                     sender: { id: 2 },
