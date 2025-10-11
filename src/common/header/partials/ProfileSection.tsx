@@ -1,13 +1,19 @@
+"use client"
+
 import { useClickOutside } from "@/lib/useClickOutside";
 import { RootState } from "@/store/store";
+import { signIn, useSession } from "next-auth/react";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 
 const ProfileSection = () => {
   const profileMenu = useClickOutside()
   const profile = useSelector((state: RootState) => state.auth.user?.profilePicture)
+  const { data: session } = useSession();
+  console.log(session)
 
   const handleSignInUser = () => {
+    signIn("keycloak", { callbackUrl: "http://localhost:3000/dashboard" })
   }
 
   const handleSignIOwner = () => {
