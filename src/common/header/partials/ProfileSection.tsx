@@ -1,30 +1,20 @@
-import { PATH } from "@/constant/PATH.constant";
-import { userManager } from "@/lib/oidc-client";
 import { useClickOutside } from "@/lib/useClickOutside";
-import { openOwnerLoginModal } from "@/store/slices/ownerLoginModalSlice";
 import { RootState } from "@/store/store";
-import { useRouter } from "next/navigation";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const ProfileSection = () => {
   const profileMenu = useClickOutside()
-  const router = useRouter();
   const profile = useSelector((state: RootState) => state.auth.user?.profilePicture)
-  const dispatch = useDispatch();
 
   const handleSignInUser = () => {
-    userManager.signinRedirect();
   }
 
   const handleSignIOwner = () => {
-    router.push(PATH.owner.dashboard);
-    dispatch(openOwnerLoginModal())
+
   }
   const handleLogout = () => {
-    userManager.signoutRedirect({
-      post_logout_redirect_uri: "http://localhost:3000"
-    })
+
   }
   return (
     <div className="flex items-center gap-1 bg-primary-100 p-1 rounded-full w-fit">

@@ -76,7 +76,7 @@ const baseQueryWithReauth = async (args: BaseQueryArg<any>, api: BaseQueryApi, e
 			{
 				url: endpoints.auth.refreshtoken,
 				method: 'POST',
-				body: { refresh: refreshToken },
+				body: { refresh_token: refreshToken },
 			},
 			api,
 			extraOptions

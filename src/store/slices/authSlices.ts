@@ -1,6 +1,6 @@
 'use client';
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { clearAllCookies, setCookie } from '../../service/cookie';
+import { setCookie } from '../../service/cookie';
 import { COOKIE_CONFIG } from '@/constant/cookie.constant';
 import { apiSlice } from '../../service/api';
 import { RootState } from '@/store/store';
@@ -68,7 +68,7 @@ const authSlice = createSlice({
 		logoutUser: (state) => {
 			state.user = null;
 			state.isLoggedIn = false;
-			clearAllCookies();
+			// clearAllCookies();
 			apiSlice.util.resetApiState();
 		},
 
