@@ -1,13 +1,13 @@
-// auth.ts
 import NextAuth from 'next-auth';
 import KeycloakProvider from 'next-auth/providers/keycloak';
+import { NextAuthOptions } from 'next-auth';
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const authOptions: NextAuthOptions = {
 	providers: [
 		KeycloakProvider({
 			clientId: process.env.KEYCLOAK_CLIENT_ID!,
 			clientSecret: process.env.KEYCLOAK_CLIENT_SECRET!,
-			issuer: process.env.KEYCLOAK_ISSUER,
+			issuer: process.env.KEYCLOAK_ISSUER!,
 			authorization: {
 				params: {
 					scope: 'openid email profile',
@@ -34,12 +34,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 			return await refreshAccessToken(token);
 		},
 		async session({ session, token }) {
+			console.log('session ----->', session);
+			console.log('session ----->', token);
 			// session.accessToken = token.accessToken as string;
 			// session.refreshToken = token.refreshToken as string;
 			// session.idToken = token.idToken as string;
 			// session.error = token.error as string;
 			// session.user = token.user as any;
-
 			return session;
 		},
 	},
@@ -58,7 +59,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 			}
 		},
 	},
-});
+	session: {
+		strategy: 'jwt',
+	},
+	secret: process.env.NEXTAUTH_SECRET,
+};
 
 async function refreshAccessToken(token: any) {
 	try {
@@ -96,3 +101,7 @@ async function refreshAccessToken(token: any) {
 		};
 	}
 }
+
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };

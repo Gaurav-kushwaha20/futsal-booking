@@ -10,10 +10,9 @@ const ProfileSection = () => {
   const profileMenu = useClickOutside()
   const profile = useSelector((state: RootState) => state.auth.user?.profilePicture)
   const { data: session } = useSession();
-  console.log(session)
 
   const handleSignInUser = () => {
-    signIn("keycloak", { callbackUrl: "http://localhost:3000/dashboard" })
+    signIn("keycloak")
   }
 
   const handleSignIOwner = () => {

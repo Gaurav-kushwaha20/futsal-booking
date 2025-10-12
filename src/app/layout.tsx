@@ -4,9 +4,9 @@
 import { ReduxProvider } from "@/components/ReduxProvider";
 import ProtectedRoutes from "@/components/ProtectedRoutes";
 import { Inter } from "next/font/google";
-import AppInitializer from "@/components/AppInitializer";
+// import AppInitializer from "@/components/AppInitializer";
 import './globals.css';
-import SessionProvider from "@/components/providers/SessionProvider";
+import { SessionProvider } from "next-auth/react";
 
 // export const metadata: Metadata = {
 //   title: "Futsal Booking System",
@@ -27,7 +27,6 @@ export default function RootLayout({
         <ReduxProvider>
           <ProtectedRoutes>
             <div className="max-w-[120rem] mx-auto">
-              {/* fetch the current the  user data from the server then update into redux store */}
               {/* <AppInitializer /> */}
               <SessionProvider>
                 {children}
