@@ -1,34 +1,24 @@
 "use client"
 
 import { useClickOutside } from "@/lib/useClickOutside";
-import { RootState } from "@/store/store";
-import { signIn, signOut, useSession } from "next-auth/react";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useSelector } from "react-redux";
 
 const ProfileSection = () => {
   const profileMenu = useClickOutside()
-  const profile = useSelector((state: RootState) => state.auth.user?.profilePicture)
-  const { data } = useSession();
-  console.log(data)
   const handleSignInUser = () => {
-    signIn("keycloak")
   }
 
   const handleSignIOwner = () => {
 
   }
   const handleLogout = () => {
-    signOut({
-      callbackUrl: `http://localhost:8080/realms/futsal-realm/protocol/openid-connect/logout`
-    })
   }
   return (
     <div className="flex items-center gap-1 bg-primary-100 p-1 rounded-full w-fit">
       {/* Profile Avatar */}
       <div className="rounded-full w-12 h-10 overflow-hidden">
         <img
-          src={data?.user?.image || '/profile.png'}
+          src={'/profile.png'}
           alt="Profile"
           className="w-full h-full object-cover hover-scale-125"
         />

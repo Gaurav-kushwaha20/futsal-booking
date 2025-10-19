@@ -1,7 +1,6 @@
 "use client"
 import React from 'react'
 import HeroSection from './partials/HeroSection'
-import { useSession } from 'next-auth/react'
 
 const page = () => {
    return (

@@ -1,26 +1,32 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import useDisclosure from './useDisclosure';
 
 export const useClickOutside = () => {
- const modalState = useDisclosure();
- const ref = useRef<HTMLDivElement | null>(null);
+	const modalState = useDisclosure();
+	const ref = useRef<HTMLDivElement | null>(null);
 
- useEffect(() => {
-  if (!modalState.isOpen) return;
+	// Wrap close in useCallback so its identity is stable
+	const handleClose = useCallback(() => {
+		modalState.close();
+	}, [modalState]);
 
-  const handleClickOutside = (event: MouseEvent) => {
-   if (!ref.current) return null;
-   if (ref.current && !ref.current.contains(event.target as Node)) {
-    modalState.close();
-   }
-  };
-  document.addEventListener('mousedown', handleClickOutside);
-  return () => {
-   document.removeEventListener('mousedown', handleClickOutside);
-  };
- }, [modalState.isOpen]);
+	useEffect(() => {
+		if (!modalState.isOpen) return;
 
- return { ref, modalState };
+		const handleClickOutside = (event: MouseEvent) => {
+			if (!ref.current) return;
+			if (!ref.current.contains(event.target as Node)) {
+				handleClose();
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [modalState.isOpen, handleClose]); // now all dependencies included
+
+	return { ref, modalState };
 };
