@@ -2,16 +2,19 @@
 
 import { useClickOutside } from "@/lib/useClickOutside";
 import { IoSettingsOutline } from "react-icons/io5";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const ProfileSection = () => {
   const profileMenu = useClickOutside()
   const handleSignInUser = () => {
+    signIn("google")
   }
 
   const handleSignIOwner = () => {
-
+    signIn("google")
   }
   const handleLogout = () => {
+    signOut()
   }
   return (
     <div className="flex items-center gap-1 bg-primary-100 p-1 rounded-full w-fit">
