@@ -1,6 +1,71 @@
 import { doesUserExist, registerUser } from '@/service/user';
 import NextAuth, { NextAuthOptions } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
 import GoogleProvider from 'next-auth/providers/google';
+import { ProviderType } from 'next-auth/providers/index';
+
+// Extend the built-in JWT interface
+interface CustomJWT extends JWT {
+	id?: string;
+	email_verified?: boolean;
+	given_name?: string;
+	family_name?: string;
+}
+
+// Extend the built-in Session interface
+declare module 'next-auth' {
+	interface Account {
+		provider: string; // 'google', 'github', etc.
+		type: ProviderType; // 'oauth', 'credentials', etc.
+		providerAccountId: string; // User ID from the provider
+		access_token: string; // OAuth access token
+		expires_at: number; // Token expiration timestamp
+		scope: string; // Permissions scope
+		token_type: string; // Usually 'Bearer'
+		id_token: string; // JWT ID token
+	}
+	interface Session {
+		user: {
+			id: string;
+			email: string;
+			name: string;
+			image?: string;
+			email_verified?: boolean;
+			given_name?: string;
+			family_name?: string;
+		};
+	}
+
+	interface User {
+		id: string;
+		name: string;
+		email: string;
+		image?: string;
+	}
+
+	interface Token {
+		name?: string | null; // User's full name
+		email?: string | null; // User's email
+		picture?: string | null; // Profile picture URL
+		sub?: string; // Subject (user ID)
+	}
+
+	interface Profile {
+		iss: string; // Issuer - 'https://accounts.google.com'
+		azp: string; // Authorized party - client ID
+		aud: string; // Audience - client ID
+		sub?: string; // Subject - unique user ID
+		email?: string; // User's email address
+		email_verified: boolean; // Whether email is verified
+		at_hash: string; // Access token hash
+		name?: string; // Full name
+		picture: string; // Profile picture URL
+		given_name: string; // First name
+		family_name: string; // Last name
+		iat: number; // Issued at timestamp
+		exp: number; // Expiration timestamp
+	}
+}
 
 export const authOptions: NextAuthOptions = {
 	providers: [
@@ -12,23 +77,27 @@ export const authOptions: NextAuthOptions = {
 	session: { strategy: 'jwt' },
 	secret: process.env.NEXTAUTH_SECRET,
 	callbacks: {
-		async jwt({ token, profile }) {
-			// console.log(account); // provider, type, provider account id, access_token, expires_at, scope, token_type, id_token
-			// console.log(token); // name, email, picture, sub
-			// console.log(user); // id, name, email, image
-			// console.log(profile) // iss, azp, aud, sub, email, email_verified, at_hash, name, picture, given_name, family_name, iat, exp
-			console.log(profile);
+		async jwt({ token, profile, account }): Promise<CustomJWT> {
 			if (profile) {
-				const response = await doesUserExist({ email: profile?.email! });
-				if (response?.data === null) {
-					// Create new user to db
-					const response = await registerUser({ email: profile.email! });
+				try {
+					const response = await doesUserExist({ email: profile?.email! });
+					if (response?.data === null) {
+						const response = await registerUser({
+							email: profile?.email!,
+							firstName: profile?.given_name!,
+							lastName: profile?.family_name!,
+							profile: profile?.picture,
+							provider: account?.provider!,
+						});
+					}
+				} catch (error) {
+					console.error('Error in JWT callback:', error);
+					return token;
 				}
 			}
-
 			return token;
 		},
-		async session({ session, token }) {
+		async session({ session }) {
 			session.user = {
 				...session.user,
 			};

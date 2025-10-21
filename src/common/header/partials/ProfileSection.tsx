@@ -6,6 +6,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 const ProfileSection = () => {
   const profileMenu = useClickOutside()
+  
   const handleSignInUser = () => {
     signIn("google")
   }
