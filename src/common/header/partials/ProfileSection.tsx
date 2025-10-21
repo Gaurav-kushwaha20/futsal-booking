@@ -3,10 +3,12 @@
 import { useClickOutside } from "@/lib/useClickOutside";
 import { IoSettingsOutline } from "react-icons/io5";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 const ProfileSection = () => {
   const profileMenu = useClickOutside()
-  
+  const session = useSession()
+
   const handleSignInUser = () => {
     signIn("google")
   }
@@ -14,16 +16,18 @@ const ProfileSection = () => {
   const handleSignIOwner = () => {
     signIn("google")
   }
+  
   const handleLogout = () => {
     signOut()
   }
   return (
     <div className="flex items-center gap-1 bg-primary-100 p-1 rounded-full w-fit">
       {/* Profile Avatar */}
-      <div className="rounded-full w-12 h-10 overflow-hidden">
-        <img
-          src={'/profile.png'}
+      <div className="rounded-full w-12 h-10 overflow-hidden relative">
+        <Image
+          src={session?.data?.user?.image || '/profile.png'}
           alt="Profile"
+          fill
           className="w-full h-full object-cover hover-scale-125"
         />
       </div>

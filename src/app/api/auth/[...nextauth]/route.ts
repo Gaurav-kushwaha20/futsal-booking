@@ -72,6 +72,9 @@ export const authOptions: NextAuthOptions = {
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID!,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+			httpOptions: {
+				timeout: 10000,
+			},
 		}),
 	],
 	session: { strategy: 'jwt' },
@@ -98,9 +101,6 @@ export const authOptions: NextAuthOptions = {
 			return token;
 		},
 		async session({ session }) {
-			session.user = {
-				...session.user,
-			};
 			return session;
 		},
 	},
