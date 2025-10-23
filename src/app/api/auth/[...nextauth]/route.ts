@@ -1,3 +1,5 @@
+import { COOKIE_CONFIG } from '@/constant/cookie.constant';
+import { getCookie } from '@/lib/cookie';
 import { doesUserExist, registerUser } from '@/service/user';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import { JWT } from 'next-auth/jwt';
@@ -81,6 +83,7 @@ export const authOptions: NextAuthOptions = {
 	secret: process.env.NEXTAUTH_SECRET,
 	callbacks: {
 		async jwt({ token, profile, account }): Promise<CustomJWT> {
+			const role = await getCookie({ cookieName: COOKIE_CONFIG.signInRole });
 			if (profile) {
 				try {
 					const response = await doesUserExist({ email: profile?.email! });

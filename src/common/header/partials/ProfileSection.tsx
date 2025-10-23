@@ -1,22 +1,33 @@
 "use client"
-
 import { useClickOutside } from "@/lib/useClickOutside";
 import { IoSettingsOutline } from "react-icons/io5";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { PATH } from "@/constant/PATH.constant";
+import { setCookie } from "@/service/cookie";
+import { COOKIE_CONFIG } from "@/constant/cookie.constant";
 
 const ProfileSection = () => {
   const profileMenu = useClickOutside()
   const session = useSession()
 
   const handleSignInUser = () => {
-    signIn("google")
+    setCookie({
+      cookieName: COOKIE_CONFIG.signInRole,
+      value: COOKIE_CONFIG.userRole,
+      expiresIn: 3600
+    })
+    signIn("google", {
+      callbackUrl: `${PATH.user.home}`,
+    })
   }
 
   const handleSignIOwner = () => {
-    signIn("google")
+    signIn("google", {
+      callbackUrl: PATH.owner.dashboard,
+    })
   }
-  
+
   const handleLogout = () => {
     signOut()
   }
