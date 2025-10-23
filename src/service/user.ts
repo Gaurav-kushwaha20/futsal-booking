@@ -35,3 +35,22 @@ export const registerUser = async ({ email, firstName, lastName, profile, provid
 	const res: IRegisterUserResponse = await getData(endpoints.auth.createUser, undefined, { method: 'POST', body: { email, firstName, lastName, profile, provider } });
 	return res;
 };
+
+// Register the owner
+interface IRegisterOwnerParams {
+	email: string;
+	firstName: string;
+	lastName: string;
+	profile: string;
+	provider: string;
+}
+
+type IRegisterOwnerResponse = IApiDetailsResponse<{
+	email: string;
+	firstName: string;
+	lastName: string;
+}>;
+export const registerOwner = async ({ email, firstName, lastName, profile, provider }: IRegisterOwnerParams) => {
+	const res: IRegisterOwnerResponse = await getData(endpoints.auth.createOwner, undefined, { method: 'POST', body: { email, firstName, lastName, profile, provider } });
+	return res;
+};

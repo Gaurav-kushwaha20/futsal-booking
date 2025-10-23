@@ -2,6 +2,7 @@ export const endpoints = {
 	auth: {
 		doesUserExist: '/user/exist',
 		createUser: '/auth/user/register',
+		createOwner: '/auth/owner/register',
 		refreshtoken: '/auth/refresh',
 		me: '/auth/me',
 	},

@@ -23,6 +23,11 @@ const ProfileSection = () => {
   }
 
   const handleSignIOwner = () => {
+    setCookie({
+      cookieName: COOKIE_CONFIG.signInRole,
+      value: COOKIE_CONFIG.ownerRole,
+      expiresIn: 3600
+    })
     signIn("google", {
       callbackUrl: PATH.owner.dashboard,
     })

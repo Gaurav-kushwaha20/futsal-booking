@@ -1,6 +1,6 @@
 import { COOKIE_CONFIG } from '@/constant/cookie.constant';
 import { getCookie } from '@/lib/cookie';
-import { doesUserExist, registerUser } from '@/service/user';
+import { doesUserExist, registerOwner, registerUser } from '@/service/user';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import { JWT } from 'next-auth/jwt';
 import GoogleProvider from 'next-auth/providers/google';
@@ -84,21 +84,40 @@ export const authOptions: NextAuthOptions = {
 	callbacks: {
 		async jwt({ token, profile, account }): Promise<CustomJWT> {
 			const role = await getCookie({ cookieName: COOKIE_CONFIG.signInRole });
+
 			if (profile) {
-				try {
-					const response = await doesUserExist({ email: profile?.email! });
-					if (response?.data === null) {
-						const response = await registerUser({
-							email: profile?.email!,
-							firstName: profile?.given_name!,
-							lastName: profile?.family_name!,
-							profile: profile?.picture,
-							provider: account?.provider!,
-						});
+				if (role === COOKIE_CONFIG.ownerRole) {
+					try {
+						const response = await doesUserExist({ email: profile?.email! });
+						if (response?.data === null) {
+							const response = await registerOwner({
+								email: profile?.email!,
+								firstName: profile?.given_name!,
+								lastName: profile?.family_name!,
+								profile: profile?.picture,
+								provider: account?.provider!,
+							});
+						}
+					} catch (error) {
+						console.error('Error in JWT callback:', error);
+						return token;
 					}
-				} catch (error) {
-					console.error('Error in JWT callback:', error);
-					return token;
+				} else if (role === COOKIE_CONFIG.userRole) {
+					try {
+						const response = await doesUserExist({ email: profile?.email! });
+						if (response?.data === null) {
+							const response = await registerUser({
+								email: profile?.email!,
+								firstName: profile?.given_name!,
+								lastName: profile?.family_name!,
+								profile: profile?.picture,
+								provider: account?.provider!,
+							});
+						}
+					} catch (error) {
+						console.error('Error in JWT callback:', error);
+						return token;
+					}
 				}
 			}
 			return token;
