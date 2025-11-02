@@ -17,7 +17,7 @@ export const getData = async <T = any>(
 
 	const queryParams = new URLSearchParams({
 		lang,
-		...Object.fromEntries(Object.entries(params ?? {}).filter(([_, v]) => v != null)),
+		...Object.fromEntries(Object.entries(params ?? {}).filter(([, v]) => v != null)),
 	});
 
 	const fetchUrl = `${process.env.NEXT_PUBLIC_BASE_API}${url}?${queryParams.toString()}`;

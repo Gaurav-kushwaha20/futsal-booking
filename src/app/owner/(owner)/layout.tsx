@@ -2,7 +2,6 @@
 import Sidebar from "@/common/sidebar/SideBar";
 import { useState } from "react";
 import Header from "@/common/header/Header";
-import { useRouter } from "next/navigation";
 import OwnerLoginModal from "@/components/modal/OwnerLoginModal";
 
 export default function UserLayout({
@@ -11,7 +10,6 @@ export default function UserLayout({
    children: React.ReactNode;
 }>) {
    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-   const router = useRouter()
    const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
    return (
       <div className="flex flex-col h-screen bg-gray-100">
